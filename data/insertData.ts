@@ -1,3 +1,4 @@
+
 const {insertPool}=require("../db/database.ts");
 // import {pool} from "../db/database";
 // console.log(pool);
@@ -43,4 +44,3 @@ exports.insertReservation = async function(covers:any, date:any, time:any, table
 //     //     return false;
 //     // }
     
-// }
