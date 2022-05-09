@@ -40,6 +40,24 @@ CREATE TABLE `arrivaltime` (
   CONSTRAINT `oid` FOREIGN KEY (`oid`) REFERENCES `reservation` (`oid`)
 ); 
 
+CREATE TABLE `stat` (
+  `Year&Month` int(6) NOT NULL, --알고 싶은 통계의 날짜
+  `month_total` int DEFAULT 0, --이번 달 총 예약 횟수
+  `no_show` int DEFAULT 0, --안 온 놈들
+  `Sun` int DEFAULT 0,
+  `Tue` int DEFAULT 0,
+  `Wed` int DEFAULT 0,
+  `Thu` int DEFAULT 0,
+  `Fri` int DEFAULT 0,
+  `Sat` int DEFAULT 0,
+  `Sun` int DEFAULT 0, --요일별 예약 횟수
+  `oneC` int DEFAULT 0,
+  `twoC` int DEFAULT 0,
+  `threeC` int DEFAULT 0,
+  `more_than_threeC` int DEFAULT 0, --인원별 예약 횟수
+  PRIMARY KEY (`Year&Month`)
+);
+
 -- 데이터 삽입
 INSERT INTO `user` (id, pw) VALUES ('admin', '1111') ; 
 
