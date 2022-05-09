@@ -2,13 +2,13 @@ const {deletePool}=require("../db/database.ts");
 // import {pool} from "../db/database";
 // console.log(pool);
 
-exports.deleteReservation = async function(covers:any, date:any, time:any, table_id:any, customer_id:any, arrival_time:any){
+exports.deleteReservation = async function(oid:any){
     const connection = await deletePool.getConnection(async (conn:any) => conn);
     // console.log(connection);
     console.log("connection done")
     try{
         const query="delete from reservation where oid = ?;";
-        const params=[covers, date, time, table_id, customer_id, arrival_time];
+        const params=[oid];
         const [row]=await connection.query(query, params);
         // console.log(row);
         console.log("query done")
@@ -22,11 +22,10 @@ exports.deleteReservation = async function(covers:any, date:any, time:any, table
     
 }
 
-
 // const {pool}=require("../db/database.ts");
 // // import {pool} from "../db/database";
 
-
+ 
 // exports.insertReservation=async function(covers, date, time, table_id, customer_id, arrival_time){
 //     const connection = await pool.getConnection(async (conn) => conn);
 //     console.log(connection);

@@ -3,18 +3,11 @@ const {deleteReservation}=require('../data/deleteData');
 // import { ReservationProps } from "../type";
 import { Request, Response } from 'express';
 
-export async function createReservation(req: Request, res:Response){
-    const { covers, date, time, table_id, customer_id, arrival_time}=req.body;
-    console.log(covers, date, time, table_id, customer_id, arrival_time);
+export async function dDeleteReservation(req: Request, res:Response){
+    const { oid }=req.body;
+    console.log(oid);
 
-    const deleteReservationRow = await deleteReservation(
-        covers,
-        date,
-        time,
-        table_id,
-        customer_id,
-        arrival_time
-    );
+    const deleteReservationRow = await deleteReservation( oid );
     
     if(deleteReservationRow) {
         return res.send({
@@ -32,7 +25,7 @@ export async function createReservation(req: Request, res:Response){
 
 };
 
-
+ 
 // const insertData= require("../data/insertData.js");
 
 // exports.createReservation =async function(req, res){
