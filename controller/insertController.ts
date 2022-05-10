@@ -1,5 +1,4 @@
 
-
 const {insertReservation}=require('../data/insertData');
 // import { ReservationProps } from "../type";
 import { Request, Response } from 'express';
@@ -33,7 +32,6 @@ export async function createReservation(req: Request, res:Response){
 
 };
 
-//testttttt
 // const insertData= require("../data/insertData.js");
 
 // exports.createReservation =async function(req, res){
