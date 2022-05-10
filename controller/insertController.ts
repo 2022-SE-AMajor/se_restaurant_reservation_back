@@ -32,7 +32,6 @@ export async function createReservation(req: Request, res:Response){
 
 };
 
-
 // const insertData= require("../data/insertData.js");
 
 // exports.createReservation =async function(req, res){
@@ -55,5 +54,3 @@ export async function createReservation(req: Request, res:Response){
 //             message: "예약 실패"
 //         })
 //     }
-
-// };
