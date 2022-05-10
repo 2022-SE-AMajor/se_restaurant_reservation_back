@@ -1,6 +1,7 @@
 
 export type UserProps = {
     id:string,
+    password:string
     password:string,
     status:string
 }

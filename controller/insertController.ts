@@ -1,3 +1,4 @@
+
 const { insertReservation } = require("../data/insertData");
 const { selectDateTimeAndTableId } = require("../data/readData");
 // import { ReservationProps } from "../type";
@@ -42,27 +43,3 @@ export async function createReservation(req: Request, res: Response) {
         });
     }
 }
-
-//testttttt
-// const insertData= require("../data/insertData.js");
-
-// exports.createReservation =async function(req, res){
-//     const { covers, date, time, table_id, customer_id, arrival_time}=req.body;
-//     console.log(covers, date, time, table_id, customer_id, arrival_time);
-
-//     const insertReservationRow = await insertData.insertReservation(
-//         covers,
-//         date,
-//         time,
-//         table_id,
-//         customer_id,
-//         arrival_time
-//     );
-
-//     if(!insertReservationRow) {
-//         return res.send({
-//             isSuccess: false,
-//             code: 400,
-//             message: "예약 실패"
-//         })
-//     }

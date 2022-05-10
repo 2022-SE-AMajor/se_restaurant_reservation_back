@@ -1,3 +1,4 @@
+
 const { insertPool } = require("../db/database.ts");
 // import {pool} from "../db/database";
 // console.log(pool);
@@ -29,3 +30,4 @@ exports.insertReservation = async function (
         return false;
     }
 };
+
