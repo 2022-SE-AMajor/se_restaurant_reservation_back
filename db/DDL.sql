@@ -44,7 +44,7 @@ CREATE TABLE `stat` (
   `Year&Month` int(6) NOT NULL, --알고 싶은 통계의 날짜
   `month_total` int DEFAULT 0, --이번 달 총 예약 횟수
   `no_show` int DEFAULT 0, --안 온 놈들
-  `Sun` int DEFAULT 0,
+  `Mon` int DEFAULT 0,
   `Tue` int DEFAULT 0,
   `Wed` int DEFAULT 0,
   `Thu` int DEFAULT 0,
