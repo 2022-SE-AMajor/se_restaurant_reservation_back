@@ -24,3 +24,6 @@ const pool = mysql.createPool({
 });
 
 export const db = pool.promise();
+
+export const statPool = pool.promise();
+export const createStatPool = pool.promise();
