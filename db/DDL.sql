@@ -41,7 +41,7 @@ CREATE TABLE `arrivaltime` (
 ); 
 
 CREATE TABLE `stat` (
-  `Year&Month` int(6) NOT NULL, --알고 싶은 통계의 날짜
+  `year_month` int(6) NOT NULL, --알고 싶은 통계의 날짜
   `month_total` int DEFAULT 0, --이번 달 총 예약 횟수
   `no_show` int DEFAULT 0, --안 온 놈들
   `Mon` int DEFAULT 0,
@@ -55,7 +55,7 @@ CREATE TABLE `stat` (
   `twoC` int DEFAULT 0,
   `threeC` int DEFAULT 0,
   `more_than_threeC` int DEFAULT 0, --인원별 예약 횟수
-  PRIMARY KEY (`Year&Month`)
+  PRIMARY KEY (`year_month`)
 );
 
 -- 데이터 삽입
@@ -89,3 +89,7 @@ INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (1, '21:30:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (2, '17:50:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (4, '18:40:00') ;
 
+INSERT INTO `stat` (`year_month`) VALUES (202205);
+INSERT INTO `stat` (`year_month`, month_total, no_show, Mon, Tue, Wed, Thu, Fri, Sat, Sun, oneC, twoC, threeC, more_than_threeC)
+VALUES (202204, 50, 2, 6, 5, 6, 7, 2, 18, 6, 10, 20, 20, 0);
+INSERT INTO `stat` (`year_month`) VALUES (202206);
