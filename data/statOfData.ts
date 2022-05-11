@@ -24,7 +24,7 @@ exports.selectStats = async function (chosenYM: any) {
     try {
         const query = "select * from stat where `year_month`=? OR `year_month`=?";
         //저번 달 대비 노쇼비율을 위해 저번달 통계도 같이 선택
-        //쿼리문에 year_month 양 옆에 ` 안 넣으면 인식 못 함 주의, 이유는 불명, 워크벤치에서 변수 이름을 바꿨는데 그게 원인일 수도
+        //쿼리문에 year_month 양 옆에 ` 안 넣으면 인식 못 함 주의, 이유는 불명, sql에 year과 month가 이미 있는 변수라 못 쓰나?
         let params;
         if (chosenYM % 20 == 1) params = [chosenYM, chosenYM - 89]; //1월이면 작년 12월 선택
         else params = [chosenYM, chosenYM - 1];
