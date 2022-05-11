@@ -1,7 +1,6 @@
 const { updateStat } = require("../data/updateStat");
-
 import { Request, Response } from "express";
-//선택한 달의 통계 선택
+
 export async function updating(req: Request, res: Response) {
     const { year_month, no_show, day, people } = req.body;
     const updateRow = await updateStat(year_month, no_show, day, people);

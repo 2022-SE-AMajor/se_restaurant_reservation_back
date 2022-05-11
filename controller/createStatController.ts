@@ -2,10 +2,8 @@ const { createStat } = require("../data/createStat");
 import { Request, Response } from "express";
 
 export async function insertStat(req: Request, res: Response) {
-    //const { year_month } = req.body;
-    const { year, month, date } = req.body;
-    console.log(year, month, date);
-    const year_month = year + month;
+    const { year_month, date } = req.body;
+    console.log(year_month, date);
     if (date != 1) {
         return res.send(`오늘은 생성할 수 없습니다.`);
     }
