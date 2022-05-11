@@ -4,7 +4,6 @@ const { createStatPool } = require("../db/database.ts");
 
 exports.createStat = async function (nextYM: any) {
     const connection = await createStatPool.getConnection(async (conn: any) => conn);
-    //statPool을 여기서도 사용 가능한가? 오류가 발생하지 않는다면 재사용해도 괜찮은가?
     console.log(`connection done.`);
     try {
         const query = "insert into stat(`year_month`) values (?)";
