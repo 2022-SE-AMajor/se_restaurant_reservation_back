@@ -1,12 +1,14 @@
-const thisMonthStat = require("../data/createStat");
+const { createStat } = require("../data/createStat");
 import { Request, Response } from "express";
 
 export async function insertStat(req: Request, res: Response) {
-    const createStat = await thisMonthStat.createStat(202207);
+    const { year_month } = req.body;
+    console.log(year_month);
+    const createStatRow = await createStat(year_month);
 
-    if (createStat) {
+    if (createStatRow) {
         return res.send({
-            result: createStat,
+            result: createStatRow,
             isSuccess: true,
             code: 200,
             message: "통계 생성 성공",

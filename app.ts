@@ -16,8 +16,7 @@ app.post("/login", login);
 app.post("/reserve", createReservation);
 app.post("/readReservation", readReservation);
 app.get("/stat", showStat);
-app.get("/stat/new", insertStat);
-
+app.post("/stat/new", insertStat);
 
 app.listen(process.env.PORT || 4000, () => {
     console.log("4000번 포트에서 대기중");
