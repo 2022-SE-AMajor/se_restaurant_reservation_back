@@ -3,7 +3,6 @@ DROP TABLE `Reservation`;
 DROP TABLE `User`;
 DROP TABLE `Table`;
 
-
 -- 테이블 생성
 
 CREATE TABLE `User` (
@@ -54,14 +53,16 @@ CREATE TABLE `stat` (
   `oneC` int DEFAULT 0,
   `twoC` int DEFAULT 0,
   `threeC` int DEFAULT 0,
-  `more_than_threeC` int DEFAULT 0, --인원별 예약 횟수
+  `fourC` int DEFAULT 0,
+  `fiveC` int DEFAULT 0,
+  `sixC` int DEFAULT 0,
+  `sevenC` int DEFAULT 0,
+  `eightC` int DEFAULT 0, --인원별 예약 횟수
   PRIMARY KEY (`year_month`)
 );
 
 -- 데이터 삽입
 INSERT INTO `user` (id, pw) VALUES ('admin', '1111') ; 
-
-
 
 INSERT INTO `table` (table_id, places) VALUES (1, 2) ;
 INSERT INTO `table` (table_id, places) VALUES (2, 2) ;
@@ -90,6 +91,6 @@ INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (2, '17:50:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (4, '18:40:00') ;
 
 INSERT INTO `stat` (`year_month`) VALUES (202205);
-INSERT INTO `stat` (`year_month`, month_total, no_show, Mon, Tue, Wed, Thu, Fri, Sat, Sun, oneC, twoC, threeC, more_than_threeC)
+INSERT INTO `stat` (`year_month`, month_total, no_show, Mon, Tue, Wed, Thu, Fri, Sat, Sun, oneC, twoC, threeC, fourC)
 VALUES (202204, 50, 2, 6, 5, 6, 7, 2, 18, 6, 10, 20, 20, 0);
 INSERT INTO `stat` (`year_month`) VALUES (202206);
