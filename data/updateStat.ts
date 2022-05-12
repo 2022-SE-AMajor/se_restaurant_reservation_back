@@ -52,23 +52,30 @@ exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, peo
                 await connection.query(numQuery3, thisYM);
                 break;
             case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-                const numQuery4 = "update stat set more_than_threeC=more_than_threeC+1 where `year_month`=?";
+                const numQuery4 = "update stat set fourC=fourC+1 where `year_month`=?";
                 await connection.query(numQuery4, thisYM);
+                break;
+            case 5:
+                const numQuery5 = "update stat set fiveC=fiveC+1 where `year_month`=?";
+                await connection.query(numQuery5, thisYM);
+                break;
+            case 6:
+                const numQuery6 = "update stat set sixC=sixC+1 where `year_month`=?";
+                await connection.query(numQuery6, thisYM);
+                break;
+            case 7:
+                const numQuery7 = "update stat set sevenC=sevenC+1 where `year_month`=?";
+                await connection.query(numQuery7, thisYM);
+                break;
+            case 8:
+                const numQuery8 = "update stat set eightC=eightC+1 where `year_month`=?";
+                await connection.query(numQuery8, thisYM);
                 break;
             default:
                 console.log(`인원이 테이블 규모보다 많거나 유효하지 않은 입력입니다.`);
                 break;
         }
         //언제 노쇼라고 판단하고 반영할지는 미정
-        //하루가 지나면 노쇼가 몇 번 있었는지 파악한 후 그만큼 추가하는 방법도 있음.
         if (noShow == true) {
             const absQuery = "update stat set no_show=no_show+1 where `year_month`=?";
             await connection.query(absQuery, thisYM);
