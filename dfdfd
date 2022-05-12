@@ -1,0 +1,286 @@
+[33mcommit f08694e0455bd41f6ac862b6eb81fc0fa5cfdb0b[m[33m ([m[1;36mHEAD -> [m[1;32mfeature[m[33m, [m[1;32mAM-52-feature[m[33m)[m
+Merge: 2fe3a28 527aead
+Author: MyeongSeok98 <103018497+MyeongSeok98@users.noreply.github.com>
+Date:   Tue May 10 12:22:24 2022 +0900
+
+    Merge pull request #10 from 2022-SE-AMajor/AM-53-feature
+    
+    ...
+
+[33mcommit 527aead5e93976c5b930580501438e0c1e4d4d7a[m
+Author: MyeongSeok98 <myong2404@gmail.com>
+Date:   Tue May 10 12:17:26 2022 +0900
+
+    ...
+
+[33mcommit 2fe3a2846dc9164340b38ed84ac727646924a699[m
+Merge: b15d2aa 3d2b103
+Author: goozip2 <92193151+goozip2@users.noreply.github.com>
+Date:   Tue May 10 11:57:00 2022 +0900
+
+    Merge pull request #9 from 2022-SE-AMajor/AM-52-feature
+    
+    Am 52 feature
+
+[33mcommit 3d2b10359158710663e2a1730be50e75e61c212d[m[33m ([m[1;31morigin/AM-52-feature[m[33m)[m
+Merge: db1a50f b15d2aa
+Author: goozip2 <92193151+goozip2@users.noreply.github.com>
+Date:   Tue May 10 11:56:47 2022 +0900
+
+    Merge branch 'feature' into AM-52-feature
+
+[33mcommit db1a50f8663e5f7175806f3cd2dc632795f443cb[m
+Author: sehyun <goozip2@gmail.com>
+Date:   Tue May 10 05:28:03 2022 +0900
+
+    deleteData, deleteController column 수정
+
+[33mcommit 292956df14a9b970496027b5781e715ff597a40f[m
+Author: sehyun <goozip2@gmail.com>
+Date:   Mon May 9 22:41:01 2022 +0900
+
+    deleteData, deleteController 1차 업로드
+
+[33mcommit b15d2aa36a46a70cc7dafe39ff7b812d4ab13bd1[m
+Merge: e849118 da0fda4
+Author: SmoothMonologue <103018018+SmoothMonologue@users.noreply.github.com>
+Date:   Mon May 9 21:25:53 2022 +0900
+
+    Merge pull request #8 from 2022-SE-AMajor/AM-55-feature
+    
+    통계 테이블 임시
+
+[33mcommit da0fda4a2bec5c3e36a4a2443ea53b52b8adcccd[m
+Author: SmoothMonologue <mobugy99@gmail.com>
+Date:   Mon May 9 21:21:41 2022 +0900
+
+    통계 테이블 임시
+
+[33mcommit e84911873a5c8a385e1fce6444e64bc0e6791082[m
+Merge: 92e3477 3dee61e
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Thu May 5 08:39:48 2022 +0900
+
+    Merge pull request #7 from 2022-SE-AMajor/AM-48-feature
+    
+    update DDL
+
+[33mcommit 3dee61eb08fc7b65b0b0e7f3e6c2c62011e7bd49[m[33m ([m[1;31morigin/AM-48-feature[m[33m)[m
+Author: sanso62 <jmd9762@gmail.com>
+Date:   Thu May 5 08:35:19 2022 +0900
+
+    update DDL
+
+[33mcommit 92e3477540c87658628a2659a82259edb6277b02[m
+Merge: 633e6b9 77f5f30
+Author: SmoothMonologue <103018018+SmoothMonologue@users.noreply.github.com>
+Date:   Tue May 3 13:22:29 2022 +0900
+
+    Merge pull request #6 from 2022-SE-AMajor/AM-35-feature
+    
+    Am 35 feature
+
+[33mcommit 633e6b916670c1e7032707cf00a539c0d3e380af[m
+Merge: 80f5158 9ff158c
+Author: goozip2 <92193151+goozip2@users.noreply.github.com>
+Date:   Tue May 3 13:22:16 2022 +0900
+
+    Merge pull request #5 from 2022-SE-AMajor/AM-36-feature
+    
+    Am 36 feature
+
+[33mcommit 9ff158c50ba3dac19439dea4a72a874a9d618500[m[33m ([m[1;31morigin/AM-36-feature[m[33m)[m
+Merge: f3d909a 80f5158
+Author: goozip2 <92193151+goozip2@users.noreply.github.com>
+Date:   Tue May 3 13:22:01 2022 +0900
+
+    Merge branch 'feature' into AM-36-feature
+
+[33mcommit 80f5158d8371b7c55426f8169f3dcc7a940f3351[m
+Merge: 762e9ee 57a6cbe
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Tue May 3 13:00:20 2022 +0900
+
+    Merge pull request #4 from 2022-SE-AMajor/AM-34-feature
+    
+    AM-34 TEST
+
+[33mcommit 57a6cbec5633ace55b11b7fd12b3c9ae740c9593[m[33m ([m[1;31morigin/AM-34-feature[m[33m)[m
+Merge: 3aa9c54 762e9ee
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Tue May 3 13:00:09 2022 +0900
+
+    Merge branch 'feature' into AM-34-feature
+
+[33mcommit 77f5f302c582ef15050277d41c5d6f8491acb75c[m
+Author: SmoothMonologue <mobugy99@gmail.com>
+Date:   Tue May 3 12:58:24 2022 +0900
+
+    브런치
+
+[33mcommit 3aa9c54c4526a6fd29fc8f84d4a9f6474f0b79de[m
+Author: sanso62 <jmd9762@gmail.com>
+Date:   Tue May 3 12:55:02 2022 +0900
+
+    AM-34 TEST
+
+[33mcommit f3d909a0077f5434b7a3f13fa6dde18e34428fc8[m
+Author: sehyun <goozip2@gmail.com>
+Date:   Tue May 3 12:53:07 2022 +0900
+
+    testt 주석 추가
+
+[33mcommit c3aa6efca5bcc5c18f0f23d0d4b6773926f23040[m
+Author: sehyun <goozip2@gmail.com>
+Date:   Tue May 3 12:51:30 2022 +0900
+
+    test 주석 추가
+
+[33mcommit 0664c03bbe21a5ba30c133ea3f862a232681dadc[m
+Author: sehyun <goozip2@gmail.com>
+Date:   Tue May 3 12:45:24 2022 +0900
+
+    test 주석 추가
+
+[33mcommit 96ac9322ddf61151d05cbfecaa7764efcb6d450c[m
+Author: SmoothMonologue <mobugy99@gmail.com>
+Date:   Tue May 3 12:45:19 2022 +0900
+
+    예약 수정 임시
+
+[33mcommit 762e9ee43786e0e567a50e026c9fa1558be97e9a[m
+Merge: 2279973 31107ad
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 12:39:38 2022 +0900
+
+    Merge pull request #3 from 2022-SE-AMajor/AM-33-feature
+    
+    test
+
+[33mcommit 31107adf1685a711e4f367aa54bbae65e62c2ec2[m[33m ([m[1;31morigin/AM-33-feature[m[33m)[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 12:38:04 2022 +0900
+
+    test를 입력함
+
+[33mcommit 99ddf7b3e2d1a51f224eec2e2bbabceada2f090e[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 12:33:44 2022 +0900
+
+    test
+
+[33mcommit 227997319aab3c05220b20cd13b6cfc772fec22d[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 10:43:23 2022 +0900
+
+    [구현중] 예약 조회
+
+[33mcommit 11ec950f7894ae265f03635f091fc4d88b0a37c4[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 10:43:13 2022 +0900
+
+    [구현중]예약 입력
+
+[33mcommit 56a4eae48a95d875464ab12827386eb9b4a52341[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 10:08:26 2022 +0900
+
+    [구현] 로그인 기능 api
+
+[33mcommit bd8d643e9b91e135233f5928e4ff7e098b17aabf[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 10:08:09 2022 +0900
+
+    api uri설정
+
+[33mcommit efaa95fd88361eb88eb5bd2c33346ab5cd3e3ece[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 10:07:50 2022 +0900
+
+    [구현] 타입
+
+[33mcommit 90f7a2a317a46e8eeaff464ffba76d26a4db2f77[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Tue May 3 00:38:50 2022 +0900
+
+    DB연결
+
+[33mcommit 9489cb07b3bfca0e7abff8f5508a728cdd4cc8f6[m
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Mon May 2 21:41:16 2022 +0900
+
+    Update app.ts
+    
+    1.login 기능 오류로 일단 보류
+    2. /reserve 페이지에 예약하기 구현
+    3. /readReservation 페이지에 예약조회 구현
+
+[33mcommit ab45e8ce240457e29c1a06d43a11d5aac5d41f04[m
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Mon May 2 21:39:07 2022 +0900
+
+    Update type.ts
+    
+    ReservationProps type
+
+[33mcommit 1fe0c82297c7b9b926d17e8f84a892c022810f1c[m
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Mon May 2 21:37:26 2022 +0900
+
+    Add files via upload
+    
+    insertData.ts : 예약하기, 모든 데이터 여과없이 입력됨.
+    readData.ts: 예약조회, reservation table 전체 select
+
+[33mcommit 95807bfff90b9c3ed5327183b29772f7493b48a4[m
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Mon May 2 21:35:48 2022 +0900
+
+    Add files via upload
+    
+    insertController.ts : 예약하기
+    readController.ts: 예약조회 미완
+
+[33mcommit b1f8ae99a0125c2ec0ba838b977c6f1707896a53[m
+Author: SmoothMonologue <mobugy99@gmail.com>
+Date:   Mon May 2 20:47:34 2022 +0900
+
+    예약 수정 임시 1
+
+[33mcommit 075c65ca043a7e6afd62d8ebfab1b0cbe606c8fb[m
+Author: Min dong Jo <65884076+sanso62@users.noreply.github.com>
+Date:   Sun May 1 14:31:04 2022 +0900
+
+    Add files via upload
+    
+    create "customer, reservation, table" table
+
+[33mcommit 133e2a92aa414f3298dfbafeb44aa043e5b09c1a[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Sat Apr 30 08:59:10 2022 +0900
+
+    배포설정
+
+[33mcommit 8d9bb9b201b8e76c8051d89cee73dc59be758bd3[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Sat Apr 30 08:25:36 2022 +0900
+
+    DB 설정
+
+[33mcommit 8cea9040f88bbc29439408535236627ab0334e4c[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Sat Apr 30 08:25:26 2022 +0900
+
+    [구현] auth - 로그인 기능
+
+[33mcommit e0d2c723dfaed94a16c4bc0b180c5e8dbaacef17[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Sat Apr 30 08:24:54 2022 +0900
+
+    [구현] app - 초기세팅, 로그인
+
+[33mcommit 05c94c5a838cb07e2f990aad2e70aff55ddcd2bc[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: GUAJEGUICHAN <qkr135qkr@gmail.com>
+Date:   Sat Apr 30 08:19:09 2022 +0900
+
+    초기 세팅
