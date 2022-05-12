@@ -4,7 +4,13 @@ import cors from "cors";
 import { login } from "./controller/auth";
 import { createReservation } from "./controller/insertController";
 import { readReservation } from "./controller/readController";
-import { showStat, showAllStat } from "./controller/readStatController";
+import {
+    showStat,
+    showNoShowStat,
+    showDayOfWeekStat,
+    showNumOfCustStat,
+    showAllStat,
+} from "./controller/readStatController";
 import { insertStat } from "./controller/createStatController";
 import { updating } from "./controller/updateStatController";
 
@@ -18,6 +24,9 @@ app.post("/reserve", createReservation);
 app.post("/readReservation", readReservation);
 
 app.post("/stat", showStat);
+app.post("/stat/noshow", showNoShowStat);
+app.post("/stat/day", showDayOfWeekStat);
+app.post("/stat/num", showNumOfCustStat);
 app.post("/stat/all", showAllStat);
 app.post("/stat/new", insertStat);
 app.post("/stat/update", updating);
