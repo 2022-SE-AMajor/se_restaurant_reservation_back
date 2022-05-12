@@ -2,6 +2,10 @@ const { updateStatPool } = require("../db/database.ts");
 
 exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, people: any) {
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
+    const query = "update stat set month_total=month_total+1 where `year_month`=?";
+    //month_total+=1이나 month_total++은 못하지만 저건 된다.
+    const [row] = await connection.query(query, thisYM);
+    if (row.changedRows == 0) return "이 날짜의 데이터는 존재하지 않습니다.";
     console.log(`connection done.`);
     try {
         switch (day) {
@@ -38,7 +42,6 @@ exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, peo
                 break;
         }
         switch (people) {
-            //스위치 문을 숫자로 비교할 순 없나?
             case 1:
                 const numQuery1 = "update stat set oneC=oneC+1 where `year_month`=?";
                 await connection.query(numQuery1, thisYM);
@@ -81,12 +84,9 @@ exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, peo
             await connection.query(absQuery, thisYM);
         }
 
-        const query = "update stat set month_total=month_total+1 where `year_month`=?";
-        //month_total+=1이나 month_total++은 못하지만 저건 된다.
-        await connection.query(query, thisYM);
         console.log(`query done.`);
         connection.release();
-        return "잘 수정됐다구~";
+        return row;
     } catch (err) {
         console.error("updateStat query error");
         connection.release();
