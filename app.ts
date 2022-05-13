@@ -24,7 +24,7 @@ app.post("/reserve", createReservation);
 app.post("/readReservation", readReservation);
 
 app.get("/stat", showStat);
-app.get("/stat/noshow", showNoShowStat);
+app.get("/stat/abs", showNoShowStat);
 app.get("/stat/day", showDayOfWeekStat);
 app.get("/stat/num", showNumOfCustStat);
 app.get("/stat/all", showAllStat);
