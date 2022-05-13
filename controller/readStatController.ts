@@ -68,13 +68,21 @@ export async function showDayOfWeekStat(req: Request, res: Response) {
 export async function showNumOfCustStat(req: Request, res: Response) {
     const { year_month } = req.body;
     const numOfCust = await selectNumOfCustStats(year_month);
-    //let count = [];
-    console.log(numOfCust[0][`oneC`]);
-    //count[0]=numOfCust.oneC;
+    const total = numOfCust[0][`month_total`];
+    if (total == 0) return "통계가 없습니다.";
+    let avg = 0,
+        Eng = [`one`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`];
+    for (let i = 0; i < 8; i++) {
+        let num = Eng[i] + `C`;
+        avg += numOfCust[0][num] * (i + 1);
+        console.log(avg);
+    }
+    avg /= total;
+    console.log(avg);
 
     if (numOfCust) {
         return res.send({
-            result: numOfCust,
+            result: { numOfCust, avg },
             isSuccess: true,
             code: 555,
             message: "인원별 통계 조회 성공",

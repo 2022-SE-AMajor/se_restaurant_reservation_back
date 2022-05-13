@@ -58,7 +58,8 @@ exports.selectNumOfCustStats = async function (chosenYM: any) {
     const connection = await statPool.getConnection(async (conn: any) => conn);
     console.log(`connection done.`);
     try {
-        const query = "select oneC, twoC, threeC, fourC, fiveC, sixC, sevenC, eightC from stat where `year_month`=?";
+        const query =
+            "select `month_total`, oneC, twoC, threeC, fourC, fiveC, sixC, sevenC, eightC from stat where `year_month`=?";
         const [row] = await connection.query(query, chosenYM);
         console.log(`query done.`);
         connection.release();
