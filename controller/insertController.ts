@@ -1,4 +1,3 @@
-
 const { insertReservation } = require("../data/insertData");
 const { selectDateTimeAndTableId } = require("../data/readData");
 // import { ReservationProps } from "../type";
@@ -43,3 +42,4 @@ export async function createReservation(req: Request, res: Response) {
         });
     }
 }
+
