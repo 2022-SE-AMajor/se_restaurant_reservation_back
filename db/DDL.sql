@@ -1,8 +1,7 @@
 DROP TABLE `arrivaltime`;
 DROP TABLE `Reservation`;
 DROP TABLE `User`;
-DROP TABLE `Table`;
-
+DROP TABLE `stat`;
 
 -- 테이블 생성
 
@@ -12,14 +11,6 @@ CREATE TABLE `User` (
   PRIMARY KEY (`id`)
 );
 
-
-CREATE TABLE `Table` (
-  `table_id` int NOT NULL, -- 테이블 번호 
-  `places` int Default 4,  -- 테이블 수용가능한 인원 
-  PRIMARY KEY (`table_id`)
-);
-
-
 CREATE TABLE `Reservation` (
   `oid` int NOT NULL AUTO_INCREMENT, -- 데이터가 삽입, 삭제될때마다 자동 생성해주는 번호
   `covers` int NOT NULL, -- 예약인원
@@ -28,9 +19,9 @@ CREATE TABLE `Reservation` (
   `table_id` int NOT NULL, -- 테이블번호, 피그마에 따르면 왼쪽위부터 오른쪽아래순으로 1~ 16번까지 범위.
   `name` varchar(32) NOT NULL, -- 사용자 이름
   `phone_number` char(13) NOT NULL, -- 사용자 전화번호
-  PRIMARY KEY (`oid`),
-  KEY `table_id_idx` (`table_id`),
-  CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `table` (`table_id`)
+  PRIMARY KEY (`oid`)
+  /*KEY `table_id_idx` (`table_id`),
+  CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `table` (`table_id`)*/
 );
 
 CREATE TABLE `arrivaltime` (
@@ -41,9 +32,10 @@ CREATE TABLE `arrivaltime` (
 ); 
 
 CREATE TABLE `stat` (
-  `Year&Month` int(6) NOT NULL, -- 알고 싶은 통계의 날짜
-  `month_total` int DEFAULT 0, -- 이번 달 총 예약 횟수
-  `no_show` int DEFAULT 0, -- 안 온 놈들
+  `year_month` int(6) NOT NULL, --알고 싶은 통계의 날짜
+  `month_total` int DEFAULT 0, --이번 달 총 예약 횟수
+  `no_show` int DEFAULT 0, --안 온 놈들
+  `Mon` int DEFAULT 0,
   `Tue` int DEFAULT 0,
   `Wed` int DEFAULT 0,
   `Thu` int DEFAULT 0,
@@ -53,14 +45,16 @@ CREATE TABLE `stat` (
   `oneC` int DEFAULT 0,
   `twoC` int DEFAULT 0,
   `threeC` int DEFAULT 0,
-  `more_than_threeC` int DEFAULT 0, --인원별 예약 횟수
-  PRIMARY KEY (`Year&Month`)
+  `fourC` int DEFAULT 0,
+  `fiveC` int DEFAULT 0,
+  `sixC` int DEFAULT 0,
+  `sevenC` int DEFAULT 0,
+  `eightC` int DEFAULT 0, --인원별 예약 횟수
+  PRIMARY KEY (`year_month`)
 );
 
 -- 데이터 삽입
 INSERT INTO `user` (id, pw) VALUES ('admin', '1111') ; 
-
-
 
 INSERT INTO `table` (table_id, places) VALUES (1, 2) ;
 INSERT INTO `table` (table_id, places) VALUES (2, 2) ;
@@ -88,3 +82,7 @@ INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (1, '21:30:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (2, '17:50:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (4, '18:40:00') ;
 
+INSERT INTO `stat` (`year_month`) VALUES (202205);
+INSERT INTO `stat` (`year_month`, month_total, no_show, Mon, Tue, Wed, Thu, Fri, Sat, Sun, oneC, twoC, threeC, fourC)
+VALUES (202204, 50, 2, 6, 5, 6, 7, 2, 18, 6, 10, 20, 20, 0);
+INSERT INTO `stat` (`year_month`) VALUES (202206);
