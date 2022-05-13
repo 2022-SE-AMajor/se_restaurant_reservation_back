@@ -41,7 +41,7 @@ CREATE TABLE `stat` (
   `Thu` int DEFAULT 0,
   `Fri` int DEFAULT 0,
   `Sat` int DEFAULT 0,
-  `Sun` int DEFAULT 0, --요일별 예약 횟수
+  `Sun` int DEFAULT 0, -- 요일별 예약 횟수
   `oneC` int DEFAULT 0,
   `twoC` int DEFAULT 0,
   `threeC` int DEFAULT 0,

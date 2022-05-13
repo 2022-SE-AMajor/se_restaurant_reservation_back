@@ -1,4 +1,5 @@
 import mysql from "mysql2";
+
 const mysql2 = require("mysql2/promise");
 
 exports.insertPool = mysql2.createPool({
@@ -33,5 +34,14 @@ const pool = mysql.createPool({
 
 export const db = pool.promise();
 
+
+exports.arrivePool = mysql2.createPool({
+    host: "localhost",
+    user: "root",
+    database: "restaurantreservation",
+    password: "1111",
+    dateStrings: "date",
+});
 export const statPool = pool.promise();
 export const updateStatPool = pool.promise();
+
