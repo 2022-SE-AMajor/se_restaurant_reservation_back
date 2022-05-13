@@ -10,13 +10,13 @@ export async function updating(req: Request, res: Response) {
         return res.send({
             result: updateRow,
             isSuccess: true,
-            code: 200,
+            code: 557,
             message: "갱신 완료",
         });
     } else {
         return res.send({
             isSuccess: false,
-            code: 400,
+            code: 57,
             message: "갱신 실패",
         });
     }
