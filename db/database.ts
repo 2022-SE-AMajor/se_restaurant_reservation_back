@@ -35,3 +35,4 @@ export const db = pool.promise();
 
 export const statPool = pool.promise();
 export const updateStatPool = pool.promise();
+//지금 여기에 deletePool 없음
