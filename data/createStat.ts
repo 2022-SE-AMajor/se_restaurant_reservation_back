@@ -8,7 +8,7 @@ exports.createStat = async function () {
     try {
         const query = "insert into stat(`year_month`) values (?)";
         const nextYear = new Date().getFullYear();
-        const nextMonth = new Date().getMonth();
+        const nextMonth = new Date().getMonth() + 1;
         console.log(nextMonth, nextYear);
         let nextYM = `0`;
         if (nextMonth < 10) {
