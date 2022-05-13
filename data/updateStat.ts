@@ -3,7 +3,6 @@ const { updateStatPool } = require("../db/database.ts");
 exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, people: any) {
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
     const query = "update stat set month_total=month_total+1 where `year_month`=?";
-    //month_total+=1이나 month_total++은 못하지만 저건 된다.
     const [row] = await connection.query(query, thisYM);
     if (row.changedRows == 0) return "이 날짜의 데이터는 존재하지 않습니다.";
     console.log(`connection done.`);
@@ -86,7 +85,7 @@ exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, peo
 
         console.log(`query done.`);
         connection.release();
-        return row;
+        return "갱신 완료";
     } catch (err) {
         console.error("updateStat query error");
         connection.release();
