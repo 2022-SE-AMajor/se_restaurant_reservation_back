@@ -13,7 +13,6 @@ export type ReservationProps = {
 };
 
 export type UserArrive = {
-    date: string;
-    time: string;
-    customer_id: string;
+    oid: number;
+    arriveTime: string;
 };
