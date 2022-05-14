@@ -16,7 +16,22 @@ exports.readPool = mysql2.createPool({
     dateStrings: "date", // date type을 string으로 받기
 });
 
-exports.createStatPool = mysql2.createPool({
+exports.listPool = mysql2.createPool({
+    host: "localhost",
+    user: "root",
+    database: "restaurantreservation",
+    password: "1111",
+});
+
+exports.deletePool = mysql2.createPool({
+    host: "localhost",
+    user: "root",
+    database: "restaurantreservation",
+    password: "1111",
+    dateStrings: "date", // date type을 string으로 받기
+});
+
+exports.autoDeletePool = mysql2.createPool({
     host: "localhost",
     user: "root",
     database: "restaurantreservation",
@@ -41,4 +56,8 @@ exports.arrivePool = mysql2.createPool({
     dateStrings: "date",
 });
 export const statPool = pool.promise();
+export const createStatPool = pool.promise();
 export const updateStatPool = pool.promise();
+export const listPool = pool.promise();
+export const deletePool = pool.promise();
+export const autoDeletePool = pool.promise();

@@ -14,11 +14,18 @@ import {
 } from "./controller/readStatController";
 import { insertStat } from "./controller/createStatController";
 import { updating } from "./controller/updateStatController";
+//import { autodDeleteReservation } from "./controller/autoDeleteController";
+import { dDeleteReservation } from "./controller/deleteController";
+import { listReservation } from "./controller/listController";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
+
+//app.delete("/autoDelete", autodDeleteReservation);
+app.delete("/delete", dDeleteReservation);
+app.get("/list", listReservation);
 
 app.get("/login", login);
 app.post("/reserve", createReservation);
