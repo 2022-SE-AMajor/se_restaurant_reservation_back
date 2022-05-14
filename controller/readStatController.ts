@@ -49,12 +49,13 @@ export async function showNoShowStat(req: Request, res: Response) {
         this_rate = (this_noShow / this_total) * 100,
         last_total = noShow[0][`month_total`],
         last_noshow = noShow[0][`no_show`],
-        last_rate = (last_noshow / last_total) * 100;
-    console.log(this_total, this_noShow, this_rate, last_total, last_noshow, last_rate);
+        last_rate = (last_noshow / last_total) * 100,
+        comp_rate = this_rate - last_rate;
+    console.log(this_total, this_noShow, this_rate, last_total, last_noshow, last_rate, comp_rate);
 
     if (noShow) {
         return res.send({
-            result: noShow,
+            result: { this_total, this_noShow, this_rate, comp_rate },
             isSuccess: true,
             code: 553,
             message: "노쇼 통계 조회 성공",
