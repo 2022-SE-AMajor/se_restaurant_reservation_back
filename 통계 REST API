@@ -66,13 +66,13 @@ GET /stat/abs
 showNoShowStat: chosenYM의 총 예약 수, 노쇼 횟수, 노쇼 비율, 지날 달 대비 상승/하락율을 출력합니다.
 
 RESPONSE
-result: this_total, this_noshow, this_rate, comp_rate
+result: this_total, this_noshow(select no_show from stat where `year_month`=`chosenYM`), this_rate, comp_rate
 message: 노쇼 통계 조회 성공
 
 ERROR
 49 / message: 선택한 달의 통계가 없습니다.
 50 / message: 선택한 달의 정보가 충분하지 않습니다.
-52 / message: 노쇼 통계 조회 실패
+52 / message: 통계 조회 실패
 
 BODY 예시
 {
@@ -82,24 +82,56 @@ BODY 예시
 
 
 GET /stat/day
+
 showDayOfWeekStat: chosenYM의 요일별 예약 횟수를 출력합니다.
 
+RESPONSE
+result: select Mon, Tue, Wed, Thu, Fri, Sat, Sun from stat where `year_month`=`chosenYM`
+message: 요일별 통계 조회 성공
+
+ERROR
+49 / message: 선택한 달의 통계가 없습니다.
+50 / message: 선택한 달의 정보가 충분하지 않습니다.
+52 / message: 통계 조회 실패
+
 BODY 예시
 {
         "yeat_month": 202205
 }
+
+
 
 GET /stat/num
+
 showNumOfCustStat: chosenYM의 인원별 예약 횟수, 평균 인원을 출력합니다.
+
+RESPONSE
+result: (select oneC, twoC, threeC, fourC, fiveC, sixC, sevenC, eightC from stat where `year_month`=`chosenYM`), avg
+message: 인원별 통계 조회 성공
+
+ERROR
+49 / message: 선택한 달의 통계가 없습니다.
+50 / message: 선택한 달의 정보가 충분하지 않습니다.
+52 / message: 통계 조회 실패
 
 BODY 예시
 {
         "yeat_month": 202205
 }
 
+
+
 GET /stat/all
+
 showAllStat: 위의 것들은 chosenYM의 통계만 보여주었다면 이번엔 지금까지 기록한 모든 통계를 보여줍니다.
 딱히 구현할 필요는 없었지만 만들기 쉬워서 넣어봤습니다.
+
+RESPONSE
+result: select * from stat
+message: 모든 통계 조회 성공
+
+ERROR
+52 / message: 통계 조회 실패
 
 BODY 예시
 {
