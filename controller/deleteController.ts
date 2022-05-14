@@ -1,37 +1,34 @@
-
-const {deleteReservation}=require('../data/deleteData');
+const { deleteReservation } = require("../data/deleteData");
 // import { ReservationProps } from "../type";
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
-export async function dDeleteReservation(req: Request, res:Response){
-    const { oid }=req.body;
+export async function dDeleteReservation(req: Request, res: Response) {
+    const { oid } = req.body;
     console.log(oid);
 
-    const deleteReservationRow = await deleteReservation( oid );
-    
-    if(deleteReservationRow) {
+    const deleteReservationRow = await deleteReservation(oid);
+
+    if (deleteReservationRow) {
         return res.send({
             isSuccess: true,
             code: 200,
-            message: "예약 삭제 성공"
-        })
+            message: "예약 삭제 성공",
+        });
     } else {
         return res.send({
             isSuccess: false,
             code: 400,
-            message: "예약 삭제 실패"
-        })
+            message: "예약 삭제 실패",
+        });
     }
+}
 
-};
-
- 
 // const insertData= require("../data/insertData.js");
 
 // exports.createReservation =async function(req, res){
 //     const { covers, date, time, table_id, customer_id, arrival_time}=req.body;
 //     console.log(covers, date, time, table_id, customer_id, arrival_time);
-    
+
 //     const insertReservationRow = await insertData.insertReservation(
 //         covers,
 //         date,
@@ -40,7 +37,7 @@ export async function dDeleteReservation(req: Request, res:Response){
 //         customer_id,
 //         arrival_time
 //     );
-    
+
 //     if(!insertReservationRow) {
 //         return res.send({
 //             isSuccess: false,
