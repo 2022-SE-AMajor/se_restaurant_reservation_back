@@ -9,7 +9,7 @@ export async function insertStat(req: Request, res: Response) {
             result: createStatRow,
             isSuccess: true,
             code: 551,
-            message: "통계 생성 성공",
+            message: createStatRow,
         });
     } else {
         return res.send({
