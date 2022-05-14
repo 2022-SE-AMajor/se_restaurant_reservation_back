@@ -4,6 +4,7 @@ import cors from "cors";
 import { login } from "./controller/auth";
 import { createReservation } from "./controller/insertController";
 import { readReservation } from "./controller/readController";
+import { arriveTime } from "./controller/arriveController";
 import {
     showStat,
     showNoShowStat,
@@ -22,20 +23,21 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.post("/login", login);
-app.post("/reserve", createReservation);
-app.post("/readReservation", readReservation);
 //app.delete("/autoDelete", autodDeleteReservation);
 app.delete("/delete", dDeleteReservation);
 app.get("/list", listReservation);
 
-app.post("/stat", showStat);
-app.post("/stat/noshow", showNoShowStat);
-app.post("/stat/day", showDayOfWeekStat);
-app.post("/stat/num", showNumOfCustStat);
-app.post("/stat/all", showAllStat);
-app.post("/stat/new", insertStat);
-app.post("/stat/update", updating);
+app.get("/login", login);
+app.post("/reserve", createReservation);
+app.get("/readReservation", readReservation);
+app.post("/arrivetime", arriveTime);
+app.get("/stat", showStat);
+app.get("/stat/abs", showNoShowStat);
+app.get("/stat/day", showDayOfWeekStat);
+app.get("/stat/num", showNumOfCustStat);
+app.get("/stat/all", showAllStat);
+app.put("/stat/new", insertStat);
+app.patch("/stat/update", updating);
 
 app.listen(process.env.PORT || 4000, () => {
     console.log("4000번 포트에서 대기중");

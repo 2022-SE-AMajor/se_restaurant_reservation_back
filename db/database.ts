@@ -28,6 +28,15 @@ exports.deletePool = mysql2.createPool({
     user: "root",
     database: "restaurantreservation",
     password: "1111",
+    dateStrings: "date", // date type을 string으로 받기
+});
+
+exports.autoDeletePool = mysql2.createPool({
+    host: "localhost",
+    user: "root",
+    database: "restaurantreservation",
+    password: "1111",
+    dateStrings: "date", // date type을 string으로 받기
 });
 
 const pool = mysql.createPool({
@@ -39,8 +48,16 @@ const pool = mysql.createPool({
 
 export const db = pool.promise();
 
+exports.arrivePool = mysql2.createPool({
+    host: "localhost",
+    user: "root",
+    database: "restaurantreservation",
+    password: "1111",
+    dateStrings: "date",
+});
 export const statPool = pool.promise();
 export const createStatPool = pool.promise();
 export const updateStatPool = pool.promise();
 export const listPool = pool.promise();
 export const deletePool = pool.promise();
+export const autoDeletePool = pool.promise();
