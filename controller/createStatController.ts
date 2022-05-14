@@ -15,7 +15,7 @@ export async function insertStat(req: Request, res: Response) {
         return res.send({
             isSuccess: false,
             code: 51,
-            message: "통계 생성 실패",
+            message: "통계를 가져오고 있습니다.",
         });
     }
 }
