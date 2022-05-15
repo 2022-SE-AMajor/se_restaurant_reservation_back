@@ -14,8 +14,9 @@ exports.insertReservation = async function (
         const query = "insert into reservation(covers, date, time, table_id, name, phone_number) values(?,?,?,?,?,?);";
         const params = [covers, date, time, table_id, name, phone_number];
         const [row] = await connection.query(query, params);
-        console.log("query done");
+        // console.log(row);
         connection.release();
+        console.log("query done");
         return row;
     } catch (err) {
         console.error("insertReservation query error");
