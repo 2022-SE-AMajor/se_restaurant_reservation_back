@@ -9,13 +9,13 @@ export async function insertStat(req: Request, res: Response) {
             result: createStatRow,
             isSuccess: true,
             code: 551,
-            message: "통계 생성 성공",
+            message: createStatRow,
         });
     } else {
         return res.send({
             isSuccess: false,
             code: 51,
-            message: "통계 생성 실패",
+            message: "통계를 가져오고 있습니다.",
         });
     }
 }

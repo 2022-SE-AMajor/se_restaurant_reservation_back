@@ -14,7 +14,7 @@ export async function updating(req: Request, res: Response) {
             result: updateRow,
             isSuccess: true,
             code: 557,
-            message: "갱신 완료",
+            message: updateRow,
         });
     } else {
         return res.send({

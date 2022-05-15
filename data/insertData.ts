@@ -1,6 +1,4 @@
 const { insertPool } = require("../db/database.ts");
-// import {pool} from "../db/database";
-// console.log(pool);
 
 exports.insertReservation = async function (
     covers: any,
@@ -11,7 +9,6 @@ exports.insertReservation = async function (
     phone_number: any,
 ) {
     const connection = await insertPool.getConnection(async (conn: any) => conn);
-    // console.log(connection);
     console.log("connection done");
     try {
         const query = "insert into reservation(covers, date, time, table_id, name, phone_number) values(?,?,?,?,?,?);";
