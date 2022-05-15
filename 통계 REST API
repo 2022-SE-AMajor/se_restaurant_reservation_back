@@ -1,4 +1,4 @@
-현시점에서 작성한 통계의 REST API 입니다. 발생할 수 있는 예외 상황이 많아서 틀만 올려놓고 고쳐나가겠습니다. 데이터베이스에 세부사항을 추가 혹은 변경함에 따라 내용도 수정될 수 있습니다.
+현시점에서 작성한 통계의 REST API 입니다. 데이터베이스에 세부사항을 추가 혹은 변경함에 따라 내용도 수정될 수 있습니다.
 url: localhost:4000/
 
 PUT /stat
@@ -64,14 +64,18 @@ GET /stat/abs
 showNoShowStat: chosenYM의 총 예약 수, 노쇼 횟수, 노쇼 비율, 지날 달 대비 상승/하락율을 출력합니다.
 
 RESPONSE
+chosenYM과 지난달의 통계가 있는 경우
 result: this_total, this_noshow(select no_show from stat where `year_month`=`chosenYM`), this_rate, comp_rate
+message: 노쇼 통계 조회 성공
+
+chosenYM의 통계는 있지만 지난달의 통계는 없는 경우
+result: this_total, this_noshow(select no_show from stat where `year_month`=`chosenYM`), this_rate, last_empty
 message: 노쇼 통계 조회 성공
 
 ERROR
 49 / message: 선택한 달의 통계가 없습니다.
 노쇼 통계는 지난 달의 통계도 같이 부르기 때문에 49번 오류 발생 조건이 다른 통계와 다릅니다.
-result가 비어있는 게 조건인 다른 통계와 달리 노쇼는 지난 달 혹은 이번 달 둘 중 한 달의 통계만 있는 경우까지 고려했습니다.
-지난 달은 없고 이번 달은 존재할 경우 노쇼 비율 비교치만 빼고 출력할 수도 있는데 그러려면 쿼리문부터 수정해야합니다.
+result가 비어있는 게 조건인 다른 통계와 달리 노쇼는 지난 달의 통계만 있는 경우까지 고려했습니다.
 50 / message: 선택한 달의 정보가 충분하지 않습니다.
 52 / message: 통계 조회 실패
 

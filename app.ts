@@ -35,13 +35,13 @@ app.post("/reserve", createReservation);
 app.get("/readReservation", readReservation);
 
 app.post("/arrivetime", arriveTime);
+app.put("/stat", insertStat);
+app.patch("/stat", updating);
 app.get("/stat", showStat);
 app.get("/stat/abs", showNoShowStat);
 app.get("/stat/day", showDayOfWeekStat);
 app.get("/stat/num", showNumOfCustStat);
 app.get("/stat/all", showAllStat);
-app.put("/stat/new", insertStat);
-app.patch("/stat/update", updating);
 
 app.listen(process.env.PORT || 4000, () => {
     console.log("4000번 포트에서 대기중");
