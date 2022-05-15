@@ -20,24 +20,31 @@ export async function isValidDateTimeWhenCreating(req: Request, res: Response) {
     }
     const selectTableIdListRow = await selectTableIdList(`${year}-${month}-${date}`, time);
 
-    if (selectTableIdListRow.length == 0) {
+    let TableList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    for (var i = 0; i < selectTableIdListRow.length; i++) {
+        // console.log(selectTableIdListRow[i]);
+        delete TableList[selectTableIdListRow[i].table_id - 1];
+    }
+    // console.log(TableList);
+
+    if (selectTableIdListRow.length == 16) {
         return res.send({
             isSuccess: true,
             code: 200,
-            message: "예약할 자리가 없습니다.",
+            message: "선택한 시간에 예약할 수 있는 테이블이 없습니다.",
         });
     } else if (selectTableIdListRow) {
         return res.send({
-            result: selectTableIdListRow,
+            result: TableList,
             isSuccess: true,
             code: 200,
-            message: "예약 할 수 있는 시간입니다.",
+            message: "선택한 시간에 예약 가능한 테이블을 조회 했습니다.",
         });
     } else {
         return res.send({
             isSuccess: false,
             code: 400,
-            message: "에러: 예약할 수 있는 시간인지 확인할 수 없습니다.",
+            message: "에러: 선택한 시간에 예약 가능한 테이블을 조회 할 수 없습니다.",
         });
     }
 }

@@ -57,3 +57,19 @@ exports.selectReservation = async function (date: any, time: any) {
         return false;
     }
 };
+
+exports.selectAllReservation = async function () {
+    const connection = await readPool.getConnection(async (conn: any) => conn);
+    console.log("connection done");
+    try {
+        const query = "select * from reservation;";
+        const [row] = await connection.query(query);
+        connection.release();
+        console.log("query done");
+        return row;
+    } catch (err) {
+        console.error("query error");
+        connection.release();
+        return false;
+    }
+};
