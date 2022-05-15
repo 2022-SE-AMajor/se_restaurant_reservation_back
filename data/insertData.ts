@@ -13,15 +13,13 @@ exports.insertReservation = async function (
     const connection = await insertPool.getConnection(async (conn: any) => conn);
     // console.log(connection);
     console.log("connection done");
-    const query = "select * from reservation";
-    const [row] = await connection.query(query);
     try {
         const query = "insert into reservation(covers, date, time, table_id, name, phone_number) values(?,?,?,?,?,?);";
         const params = [covers, date, time, table_id, name, phone_number];
         const [row] = await connection.query(query, params);
         // console.log(row);
-        console.log("query done");
         connection.release();
+        console.log("query done");
         return row;
     } catch (err) {
         console.error("insertReservation query error");

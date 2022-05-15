@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import { login } from "./controller/auth";
-import { createReservation } from "./controller/insertController";
+import { isValidDateTime, createReservation } from "./controller/insertController";
 import { readReservation } from "./controller/readController";
 import { arriveTime } from "./controller/arriveController";
 import {
@@ -28,8 +28,12 @@ app.delete("/delete", dDeleteReservation);
 app.get("/list", listReservation);
 
 app.get("/login", login);
+
+app.get("/reserve", isValidDateTime);
 app.post("/reserve", createReservation);
+
 app.get("/readReservation", readReservation);
+
 app.post("/arrivetime", arriveTime);
 app.get("/stat", showStat);
 app.get("/stat/abs", showNoShowStat);
