@@ -4,6 +4,7 @@ import cors from "cors";
 import { login } from "./controller/auth";
 import { isValidDateTimeWhenCreating, createReservation } from "./controller/insertController";
 import { isValidDateTimeWhenReading, readReservation } from "./controller/readController";
+import { viewAllReservaion, isValidDateTimeWhenUpdating, modifyReservation } from "./controller/updateController";
 import { arriveTime } from "./controller/arriveController";
 import {
     showStat,
@@ -34,6 +35,10 @@ app.post("/reserve", createReservation);
 
 app.get("/readReservation", isValidDateTimeWhenReading);
 app.post("/readReservation", readReservation);
+
+app.get("/modifyReservation", viewAllReservaion);
+app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
+app.put("/modifyReservation/:oid", modifyReservation);
 
 app.post("/arrivetime", arriveTime);
 app.put("/stat", insertStat);

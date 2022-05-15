@@ -16,6 +16,13 @@ exports.readPool = mysql2.createPool({
     dateStrings: "date", // date type을 string으로 받기
 });
 
+exports.updatePool = mysql2.createPool({
+    host: "localhost",
+    user: "root",
+    database: "restaurantreservation",
+    password: "1111",
+});
+
 exports.listPool = mysql2.createPool({
     host: "localhost",
     user: "root",

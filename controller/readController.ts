@@ -18,18 +18,25 @@ export async function isValidDateTimeWhenReading(req: Request, res: Response) {
     }
     const selectTableIdListRow = await selectTableIdList(`${year}-${month}-${date}`, time);
 
+    let TableList = new Array(16).fill(null);
+    for (var i = 0; i < selectTableIdListRow.length; i++) {
+        // console.log(selectTableIdListRow[i]);
+        TableList.splice(selectTableIdListRow[i].table_id - 1, 1, selectTableIdListRow[i].table_id);
+    }
+    // console.log(TableList);
+
     if (selectTableIdListRow) {
         return res.send({
-            result: selectTableIdListRow,
+            result: TableList,
             isSuccess: true,
             code: 200,
-            message: "선택한 시간에 테이블리스트를 조회 했습니다.",
+            message: "선택한 시간에 예약된 테이블을 조회 했습니다.",
         });
     } else {
         return res.send({
             isSuccess: false,
             code: 400,
-            message: "에러: 선택한 시간에 테이블리스트를 조회 할 수 없습니다.",
+            message: "에러: 선택한 시간에 예약된 테이블을 조회 할 수 없습니다.",
         });
     }
 }
