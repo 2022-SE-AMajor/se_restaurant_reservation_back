@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 
 import { login } from "./controller/auth";
-import { isValidDateTime, createReservation } from "./controller/insertController";
-import { readReservation } from "./controller/readController";
+import { isValidDateTimeWhenCreating, createReservation } from "./controller/insertController";
+import { isValidDateTimeWhenReading, readReservation } from "./controller/readController";
 import { arriveTime } from "./controller/arriveController";
 import {
     showStat,
@@ -29,10 +29,11 @@ app.get("/list", listReservation);
 
 app.get("/login", login);
 
-app.get("/reserve", isValidDateTime);
+app.get("/reserve", isValidDateTimeWhenCreating);
 app.post("/reserve", createReservation);
 
-app.get("/readReservation", readReservation);
+app.get("/readReservation", isValidDateTimeWhenReading);
+app.post("/readReservation", readReservation);
 
 app.post("/arrivetime", arriveTime);
 app.put("/stat", insertStat);

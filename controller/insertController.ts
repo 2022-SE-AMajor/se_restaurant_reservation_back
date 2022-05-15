@@ -3,7 +3,7 @@ const { selectTableIdList, selectDateTimeAndTableId } = require("../data/readDat
 // import { ReservationProps } from "../type";
 import { Request, Response } from "express";
 
-export async function isValidDateTime(req: Request, res: Response) {
+export async function isValidDateTimeWhenCreating(req: Request, res: Response) {
     const { year, month, date, time } = req.body;
     console.log(year, month, date, time);
     let now = new Date(); // 한국시간 기준 아님
