@@ -4,8 +4,8 @@ const { sListReservation } = require("../data/listData");
 import { Request, Response } from "express";
 
 export async function autodDeleteReservation(req: Request, res: Response) {
-    const [a] = await sListReservation();
-    console.log(a);
+    const [a] = await sListReservation(); //oid, date, time 형태 반환받음
+    //console.log(a);
 
     const autoDeleteReservationRow = await autoDeleteReservation(a);
 
