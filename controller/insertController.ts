@@ -98,3 +98,53 @@ export async function createReservation(req: Request, res: Response) {
         });
     }
 }
+
+export async function createReservationOnSite(req: Request, res: Response) {
+    const { date, time } = req.query; // 시간은 정각으로 고정해야 피그마에 맞다.
+    const { covers, table_id, name, phone_number } = req.body;
+    console.log(date, time);
+    console.log(covers, table_id, name, phone_number);
+
+    // 데이터 중복은 일어날 수 없어 주석 처리했음.
+    // const selectRervationRow = await selectDateTimeAndTableId();
+
+    // for (var i in selectRervationRow) {
+    //     var row = selectRervationRow[i];
+    //     if (row.date == date && row.time == time && row.table_id == table_id) {
+    //         console.log("데이터중복됨");
+    //         const html = `
+    //             <!DOCTYPE html>
+    //             <html>
+    //             <head>
+    //             <meta charset="UTF-8">
+    //             <title>practice</title>
+    //             </head>
+    //             <body>
+    //             <h1>데이터 중복됨!</h1>
+    //             </body>
+    //             </html>
+    //             `; //front 메세지 창 html
+    //         return res.send(html);
+    //     }
+    // }
+    const insertReservationRow = await insertReservation(covers, date, time, table_id, name, phone_number);
+
+    if (insertReservationRow) {
+        return res.send({
+            result: {
+                date: date,
+                time: time,
+                table_id: table_id,
+            }, // 예약 날짜 확인 창을 위한 res.result
+            isSuccess: true,
+            code: 200,
+            message: "예약 성공",
+        });
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "예약 실패",
+        });
+    }
+}
