@@ -31,10 +31,35 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2018,
         project: ["./tsconfig.json"],
-        // tsconfig 파일의 경로를 참조 해줍니다. 
-        // 기준은 root 입니다.
+                jsx: true,
+      },
+      ecmaVersion: 'latest',
+      sourceType: 'module',
     },
+    plugins: [
+      'react',
+      '@typescript-eslint',
+    ],
     rules: {
-            // 추가하고 싶은 rule을 더 추가해줍니다.
-        }
-};
+      'react/jsx-filename-extension': [1, { extensions: ['.ts', '.tsx'] }],
+      'import/extensions': [
+        'error',
+        'ignorePackages',
+        {
+          js: 'never',
+          jsx: 'never',
+          ts: 'never',
+          tsx: 'never',
+        },
+      ],
+      'react/no-unstable-nested-components': [
+        'off',
+        { allowAsProps: true },
+      ],
+      'global-require': 0,
+      'import/no-unresolved': ['error'],
+      // 'linebreak-style': ['error', 'windows'],
+      'linebreak-style': 0,
+      allowTemplateLiterals: 0,
+    },
+  };

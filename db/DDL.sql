@@ -1,7 +1,7 @@
 DROP TABLE `arrivaltime`;
 DROP TABLE `Reservation`;
 DROP TABLE `User`;
-DROP TABLE `Table`;
+DROP TABLE `stat`;
 
 -- 테이블 생성
 
@@ -11,14 +11,6 @@ CREATE TABLE `User` (
   PRIMARY KEY (`id`)
 );
 
-
-CREATE TABLE `Table` (
-  `table_id` int NOT NULL, -- 테이블 번호 
-  `places` int Default 4,  -- 테이블 수용가능한 인원 
-  PRIMARY KEY (`table_id`)
-);
-
-
 CREATE TABLE `Reservation` (
   `oid` int NOT NULL AUTO_INCREMENT, -- 데이터가 삽입, 삭제될때마다 자동 생성해주는 번호
   `covers` int NOT NULL, -- 예약인원
@@ -27,9 +19,9 @@ CREATE TABLE `Reservation` (
   `table_id` int NOT NULL, -- 테이블번호, 피그마에 따르면 왼쪽위부터 오른쪽아래순으로 1~ 16번까지 범위.
   `name` varchar(32) NOT NULL, -- 사용자 이름
   `phone_number` char(13) NOT NULL, -- 사용자 전화번호
-  PRIMARY KEY (`oid`),
-  KEY `table_id_idx` (`table_id`),
-  CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `table` (`table_id`)
+  PRIMARY KEY (`oid`)
+  /*KEY `table_id_idx` (`table_id`),
+  CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `table` (`table_id`)*/
 );
 
 CREATE TABLE `arrivaltime` (
@@ -49,7 +41,7 @@ CREATE TABLE `stat` (
   `Thu` int DEFAULT 0,
   `Fri` int DEFAULT 0,
   `Sat` int DEFAULT 0,
-  `Sun` int DEFAULT 0, --요일별 예약 횟수
+  `Sun` int DEFAULT 0, -- 요일별 예약 횟수
   `oneC` int DEFAULT 0,
   `twoC` int DEFAULT 0,
   `threeC` int DEFAULT 0,
