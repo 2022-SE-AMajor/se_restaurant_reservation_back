@@ -10,6 +10,7 @@ export async function dDeleteReservation(req: Request, res: Response) {
 
     if (deleteReservationRow) {
         return res.send({
+            result: "예약 삭제 성공",
             isSuccess: true,
             code: 200,
             message: "예약 삭제 성공",

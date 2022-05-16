@@ -6,7 +6,6 @@ export async function listReservation(req: Request, res: Response) {
     console.log(listRervationRow);
 
     if (listRervationRow) {
-        console.log("aaa");
         return res.send({
             result: listRervationRow,
             isSuccess: true,
