@@ -11,6 +11,7 @@ export async function autodDeleteReservation(req: Request, res: Response) {
 
     if (true) {
         return res.send({
+            result: "시간 초과 자동 예약 삭제 성공",
             isSuccess: true,
             code: 200,
             message: "시간 초과 자동 예약 삭제 성공",
