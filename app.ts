@@ -2,9 +2,10 @@ import express from "express";
 import cors from "cors";
 
 import { login } from "./controller/auth";
-import { isValidDateTimeWhenCreating, createReservation, createReservationOnSite } from "./controller/insertController";
-import { isValidDateTimeWhenReading, readReservation } from "./controller/readController";
+import { isValidDateTimeWhenCreating, createReservation } from "./controller/insertController";
+import { readReservation } from "./controller/readController";
 import { viewAllReservaion, isValidDateTimeWhenUpdating, modifyReservation } from "./controller/updateController";
+import { ajaxOutPutTableList, createReservationOnSite } from "./controller/onSiteController";
 import { arriveTime } from "./controller/arriveController";
 import {
     showStat,
@@ -24,7 +25,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-
 app.post("/login", login);
 app.post("/reserve", createReservation);
 app.post("/readReservation", readReservation);
@@ -38,13 +38,13 @@ app.get("/login", login);
 app.get("/reserve", isValidDateTimeWhenCreating);
 app.post("/reserve", createReservation);
 
-app.get("/readReservation", isValidDateTimeWhenReading);
-app.post("/readReservation", readReservation);
+app.get("/readReservation", readReservation);
 
 app.get("/modifyReservation", viewAllReservaion);
 app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
 app.put("/modifyReservation/:oid", modifyReservation);
 
+app.get("/reserveOnSite", ajaxOutPutTableList);
 app.post("/reserveOnSite", createReservationOnSite);
 
 app.post("/arrivetime", arriveTime);
