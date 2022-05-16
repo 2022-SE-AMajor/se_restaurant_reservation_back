@@ -1,53 +1,30 @@
-const { selectTableIdList, selectReservation } = require("../data/readData");
+const { selectReservation } = require("../data/readData");
 import { Request, Response } from "express";
 
-export async function isValidDateTimeWhenReading(req: Request, res: Response) {
+export async function readReservation(req: Request, res: Response) {
     const { year, month, date, time } = req.body;
-    console.log(year, month, date, time);
+    // console.log(year, month, date, time);
+    const selectedDate = `${year}-${month}-${date}`;
     let now = new Date(); // 한국시간 기준 아님
-    let dateTime = new Date(`${year}-${month}-${date}T${time}`); //한국시간 기준 아님
-    console.log(now);
-    console.log(dateTime);
+    let dateTime = new Date(`${selectedDate}T${time}`); //한국시간 기준 아님
+    // console.log(now);
+    // console.log(dateTime);
     if (now > dateTime) {
-        console.log("에러: 지난 날짜입니다.");
         return res.send({
             isSuccess: false,
             code: 400,
             message: "에러: 지난 날짜입니다.",
         });
     }
-    const selectTableIdListRow = await selectTableIdList(`${year}-${month}-${date}`, time);
 
-    let TableList = new Array(16).fill(null);
-    for (var i = 0; i < selectTableIdListRow.length; i++) {
-        // console.log(selectTableIdListRow[i]);
-        TableList.splice(selectTableIdListRow[i].table_id - 1, 1, selectTableIdListRow[i].table_id);
-    }
-    // console.log(TableList);
-
-    if (selectTableIdListRow) {
-        return res.send({
-            result: TableList,
-            isSuccess: true,
-            code: 200,
-            message: "선택한 시간에 예약된 테이블을 조회 했습니다.",
-        });
-    } else {
-        return res.send({
-            isSuccess: false,
-            code: 400,
-            message: "에러: 선택한 시간에 예약된 테이블을 조회 할 수 없습니다.",
-        });
-    }
-}
-
-export async function readReservation(req: Request, res: Response) {
-    const { date, time } = req.query;
-    console.log(date, time);
-    const selectRervationRow = await selectReservation(date, time);
+    const selectRervationRow = await selectReservation(selectedDate, time);
     // console.log(selectRervationRow);
 
     if (selectRervationRow) {
+        selectRervationRow.push({
+            date: selectedDate,
+            time: time,
+        });
         return res.send({
             result: selectRervationRow,
             isSuccess: true,
@@ -57,8 +34,8 @@ export async function readReservation(req: Request, res: Response) {
     } else {
         return res.send({
             isSuccess: false,
-            code: 400,
-            message: "에러: 선택한 시간에 예약정보를 조회할 수 없습니다.",
+            code: 404,
+            message: "에러: DB 연동 비정상",
         });
     }
 }

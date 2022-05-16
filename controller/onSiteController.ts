@@ -1,26 +1,8 @@
-const { updateReservation } = require("../data/updateData");
-const { selectAllReservation, selectTableIdList } = require("../data/readData");
+const { insertReservation } = require("../data/insertData");
+const { selectTableIdList } = require("../data/readData");
 import { Request, Response } from "express";
 
-export async function viewAllReservaion(req: Request, res: Response) {
-    const selectAllReservationRow = await selectAllReservation();
-    if (selectAllReservationRow) {
-        return res.send({
-            result: selectAllReservationRow,
-            isSuccess: true,
-            code: 200,
-            message: "현재 예약 리스트를 확인했습니다.",
-        });
-    } else {
-        return res.send({
-            isSuccess: false,
-            code: 404,
-            message: "에러: 현재 예약 리스트를 확인할 수 없습니다.",
-        });
-    }
-}
-
-export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
+export async function ajaxOutPutTableList(req: Request, res: Response) {
     const { year, month, date, time } = req.body;
     // console.log(year, month, date, time);
     const selectedDate = `${year}-${month}-${date}`;
@@ -70,26 +52,25 @@ export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
     }
 }
 
-export async function modifyReservation(req: Request, res: Response) {
-    const { oid } = req.params;
+export async function createReservationOnSite(req: Request, res: Response) {
     const { date, time } = req.query;
     const { covers, table_id, name, phone_number } = req.body;
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
 
-    const updateReservationRow = await updateReservation(oid, covers, date, time, table_id, name, phone_number);
+    const insertReservationRow = await insertReservation(covers, date, time, table_id, name, phone_number);
 
-    if (updateReservationRow) {
+    if (insertReservationRow) {
         return res.send({
             isSuccess: true,
             code: 200,
-            message: "예약 수정을 성공했습니다.",
+            message: "예약 성공",
         });
     } else {
         return res.send({
             isSuccess: false,
             code: 400,
-            message: "에러: 예약 수정을 실패했습니다.",
+            message: "예약 실패",
         });
     }
 }
