@@ -27,10 +27,10 @@ exports.sListReservation = async function () {
     try {
         const query = "select oid, date, time from reservation;";
         const [row] = await connection.query(query);
-        console.log(row);
+        //console.log(row);
         console.log("query done");
         connection.release();
-        return row;
+        return [row];
     } catch (err) {
         console.error("listReservation query error");
         connection.release();
