@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+const morgan = require("morgan");
 
 import { login } from "./controller/auth";
 import { isValidDateTimeWhenCreating, createReservation } from "./controller/insertController";
@@ -23,7 +24,9 @@ import { listReservation } from "./controller/listController";
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use(morgan("dev"));
 
 app.post("/login", login);
 app.post("/reserve", createReservation);
