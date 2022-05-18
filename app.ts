@@ -4,7 +4,12 @@ import cors from "cors";
 import { login } from "./controller/auth";
 import { isValidDateTimeWhenCreating, createReservation } from "./controller/insertController";
 import { readReservation } from "./controller/readController";
-import { viewAllReservaion, isValidDateTimeWhenUpdating, modifyReservation } from "./controller/updateController";
+import {
+    viewAllReservaion,
+    isValidDateTimeWhenUpdating,
+    modifyReservation,
+    decidingNoShow,
+} from "./controller/updateController";
 import { ajaxOutPutTableList, createReservationOnSite } from "./controller/onSiteController";
 import { arriveTime } from "./controller/arriveController";
 import {

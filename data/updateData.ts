@@ -5,6 +5,7 @@ exports.updateReservation = async function (
     covers: any,
     date: any,
     time: any,
+    day: any,
     table_id: any,
     name: any,
     phone_number: any,
@@ -15,8 +16,8 @@ exports.updateReservation = async function (
         console.log("connection done");
         try {
             const query =
-                "update reservation set covers=?, date=?, time=?, table_id=?, name=?, phone_number=? where oid = ?;";
-            const params = [covers, date, time, table_id, name, phone_number, oid];
+                "update reservation set covers=?, date=?, time=?, day=?, table_id=?, name=?, phone_number=? where oid = ?;";
+            const params = [covers, date, time, day, table_id, name, phone_number, oid];
             const [row] = await connection.query(query, params);
             // console.log(row);
             connection.release();

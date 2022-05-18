@@ -74,6 +74,7 @@ exports.arrivePool = mysql2.createPool({
 export const statPool = pool.promise();
 export const createStatPool = pool.promise();
 export const updateStatPool = pool.promise();
+export const noShowPool = pool.promise();
 export const listPool = pool.promise();
 export const deletePool = pool.promise();
 export const autoDeletePool = pool.promise();
