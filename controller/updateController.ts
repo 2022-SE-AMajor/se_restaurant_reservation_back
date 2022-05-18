@@ -1,5 +1,5 @@
-const { updateReservation } = require("../data/updateData");
-const { selectAllReservation, selectTableIdList } = require("../data/readData");
+const { updateReservation, updateStatusShow, updateStatusNoShow } = require("../data/updateData");
+const { selectAllReservation, selectTableIdList, selectReservation } = require("../data/readData");
 import { Request, Response } from "express";
 
 export async function viewAllReservaion(req: Request, res: Response) {
@@ -90,6 +90,38 @@ export async function modifyReservation(req: Request, res: Response) {
             isSuccess: false,
             code: 400,
             message: "에러: 예약 수정을 실패했습니다.",
+        });
+    }
+}
+export async function decidingNoShow(req: Request, res: Response) {
+    const { time, table } = req.body;
+    const today = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
+        now = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    let changeRow = false;
+    const bookRow = await selectReservation(today, time);
+    if (bookRow == "") {
+        return res.send({
+            isSuccess: true,
+            code: 160,
+            message: "갱신할 예약이 없습니다.",
+        });
+    }
+
+    if (time >= now) changeRow = await updateStatusShow(today, time, table);
+    else changeRow = await updateStatusNoShow(today, time, table);
+
+    if (changeRow) {
+        return res.send({
+            result: changeRow,
+            isSuccess: true,
+            code: 557,
+            message: changeRow,
+        });
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 57,
+            message: "갱신 실패",
         });
     }
 }
