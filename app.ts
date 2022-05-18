@@ -48,7 +48,7 @@ app.get("/readReservation", readReservation);
 app.get("/modifyReservation", viewAllReservaion);
 app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
 app.put("/modifyReservation/:oid", modifyReservation);
-app.put("/modifyReservation/abs", decidingNoShow);
+app.patch("/modifyReservation/abs", decidingNoShow);
 
 app.get("/reserveOnSite", ajaxOutPutTableList);
 app.post("/reserveOnSite", createReservationOnSite);
