@@ -17,7 +17,7 @@ ERROR
 
 PATCH /stat
 
-updating: thisYM의 통계를 갱신합니다. 당장은 노쇼 여부와 요일, 인원수까지 따로 받아야하지만 외부 테이블의 키값을 참조할 수 있다는 걸 방금 알았습니다. 곧 개선 예정.
+updating: thisYM과 현재 시각에 해당하는 통계를 갱신합니다.
 아직 갱신 시점을 못 정했습니다. 뭘로 정하냐에 따라 주소가 변동될 가능성이 있습니다. 노쇼 여부를 알려면 삭제 직전에 갱신하는 게 편할 거라 생각합니다.
 
 RESPONSE
@@ -25,15 +25,6 @@ result & message: 갱신 완료
 
 ERROR
 57 / message: 갱신 실패
-
-BODY 예시
-{
-        "year_month": 202205,
-        "no_show": true,
-        "day": "목",
-        "people": 3
-}
-
 
 
 GET /stat
