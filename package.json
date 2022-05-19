@@ -26,6 +26,7 @@
         "cors": "^2.8.5",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-prettier": "^4.0.0",
+        "morgan": "^1.10.0",
         "mysql2": "^2.3.3",
         "node": "^17.7.2",
         "package.json": "^2.0.1"
