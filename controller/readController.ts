@@ -3,45 +3,39 @@ import { Request, Response } from "express";
 
 export async function readReservation(req: Request, res: Response) {
     const { year, month, date, time } = req.body;
-    console.log(year, month, date, time);
-    const selectedDate = year + "-" + month + "-" + date;
-    const selectedTime = time;
-    let now = new Date(); // 한국시간 기준 아님
-    let dateTime = new Date(year + "-" + month + "-" + date + "T" + time); //한국시간 기준 아님
-    console.log(now);
-    console.log(dateTime);
+    // console.log(year, month, date, time);
+    const selectedDate = `${year}-${month}-${date}`;
+    let now = new Date();
+    let dateTime = new Date(`${selectedDate}T${time}`);
+    // console.log(now);
+    // console.log(dateTime);
     if (now > dateTime) {
-        console.log("에러: 지난 날짜");
-        const html = ` 
-            <!DOCTYPE html>
-            <html>
-            <head>
-            <meta charset="UTF-8">
-            <title>practice</title>
-            </head>
-            <body>
-            <h1>에러: 지난날짜</h1>
-            </body>
-            </html>
-            `; //front 메세지 창 html
-        return res.send(html);
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "에러: 지난 날짜입니다.",
+        });
     }
 
-    const selectRervationRow = await selectReservation(selectedDate, selectedTime);
+    const selectRervationRow = await selectReservation(selectedDate, time);
     // console.log(selectRervationRow);
 
     if (selectRervationRow) {
+        selectRervationRow.push({
+            date: selectedDate,
+            time: time,
+        });
         return res.send({
             result: selectRervationRow,
             isSuccess: true,
             code: 200,
-            message: "예약 조회 성공",
+            message: "선택한 시간에 예약정보를 조회했습니다.",
         });
     } else {
         return res.send({
             isSuccess: false,
-            code: 400,
-            message: "예약 조회 실패",
+            code: 404,
+            message: "에러: DB 연동 비정상",
         });
     }
 }

@@ -1,31 +1,70 @@
 const { insertReservation } = require("../data/insertData");
-const { selectDateTimeAndTableId } = require("../data/readData");
-// import { ReservationProps } from "../type";
+const { selectTableIdList } = require("../data/readData");
+// const { sListReservation } = require("../data/listData"); // import sListReservation
+// const {autoDeleteReservation} = require("../data/autoDeleteData"); // import autoDeleteReservation
 import { Request, Response } from "express";
 
-export async function createReservation(req: Request, res: Response) {
-    const { covers, date, time, table_id, name, phone_number } = req.body;
-    console.log(covers, date, time, table_id, name, phone_number);
-    const selectRervationRow = await selectDateTimeAndTableId();
-    for (var i in selectRervationRow) {
-        var row = selectRervationRow[i];
-        if (row.date == date && row.time == time && row.table_id == table_id) {
-            console.log("데이터중복됨");
-            const html = ` 
-                <!DOCTYPE html>
-                <html>
-                <head>
-                <meta charset="UTF-8">
-                <title>practice</title>
-                </head>
-                <body>
-                <h1>데이터 중복됨!</h1>
-                </body>
-                </html>
-                `; //front 메세지 창 html
-            return res.send(html);
-        }
+export async function isValidDateTimeWhenCreating(req: Request, res: Response) {
+    const { year, month, date, time } = req.body;
+    // console.log(year, month, date, time);
+    // const [a] = await sListReservation(); // select 현재 전체 예약 현황
+    const selectedDate = `${year}-${month}-${date}`;
+    let now = new Date();
+    let dateTime = new Date(`${selectedDate}T${time}`);
+    // console.log(now);
+    // console.log(dateTime);
+    if (now > dateTime) {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "에러: 지난 날짜입니다.",
+        });
     }
+    // const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신
+    /* 
+        자동삭제가 잘 되었는지 res.send
+    */
+    const selectTableIdListRow = await selectTableIdList(selectedDate, time);
+
+    let TableList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    for (var i = 0; i < selectTableIdListRow.length; i++) {
+        // console.log(selectTableIdListRow[i]);
+        delete TableList[selectTableIdListRow[i].table_id - 1];
+    }
+    // console.log(TableList);
+
+    if (selectTableIdListRow.length == 16) {
+        return res.send({
+            isSuccess: true,
+            code: 200,
+            message: "선택한 시간에 예약할 수 있는 테이블이 없습니다.",
+        });
+    } else if (selectTableIdListRow) {
+        return res.send({
+            result: {
+                date: selectedDate,
+                time: time,
+                table_id_list: TableList,
+            },
+            isSuccess: true,
+            code: 200,
+            message: "선택한 시간에 예약 가능한 테이블을 조회 했습니다.",
+        });
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 404,
+            message: "에러: DB 연동 비정상",
+        });
+    }
+}
+
+export async function createReservation(req: Request, res: Response) {
+    const { date, time } = req.query;
+    const { covers, table_id, name, phone_number } = req.body;
+    // console.log(date, time);
+    // console.log(covers, table_id, name, phone_number);
+
     const insertReservationRow = await insertReservation(covers, date, time, table_id, name, phone_number);
 
     if (insertReservationRow) {
@@ -42,4 +81,3 @@ export async function createReservation(req: Request, res: Response) {
         });
     }
 }
-

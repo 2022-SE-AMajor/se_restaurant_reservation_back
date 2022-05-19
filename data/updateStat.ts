@@ -1,38 +1,38 @@
 const { updateStatPool } = require("../db/database.ts");
 
-exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, people: any) {
+exports.updateStat = async function (thisYM: any, noShow: any, day: any, people: any) {
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
     const query = "update stat set month_total=month_total+1 where `year_month`=?";
     const [row] = await connection.query(query, thisYM);
-    if (row.changedRows == 0) return "이 날짜의 데이터는 존재하지 않습니다.";
+    if (row.changedRows == 0) return "이 날짜의 통계는 존재하지 않습니다.";
     console.log(`connection done.`);
     try {
         switch (day) {
-            case `월`:
+            case 2:
                 const dayQuery1 = "update stat set Mon=Mon+1 where `year_month`=?";
                 await connection.query(dayQuery1, thisYM);
                 break;
-            case `화`:
+            case 3:
                 const dayQuery2 = "update stat set Tue=Tue+1 where `year_month`=?";
                 await connection.query(dayQuery2, thisYM);
                 break;
-            case `수`:
+            case 4:
                 const dayQuery3 = "update stat set Wed=Wed+1 where `year_month`=?";
                 await connection.query(dayQuery3, thisYM);
                 break;
-            case `목`:
+            case 5:
                 const dayQuery4 = "update stat set Thu=Thu+1 where `year_month`=?";
                 await connection.query(dayQuery4, thisYM);
                 break;
-            case `금`:
+            case 6:
                 const dayQuery5 = "update stat set Fri=Fri+1 where `year_month`=?";
                 await connection.query(dayQuery5, thisYM);
                 break;
-            case `토`:
+            case 7:
                 const dayQuery6 = "update stat set Sat=Sat+1 where `year_month`=?";
                 await connection.query(dayQuery6, thisYM);
                 break;
-            case `일`:
+            case 1:
                 const dayQuery7 = "update stat set Sun=Sun+1 where `year_month`=?";
                 await connection.query(dayQuery7, thisYM);
                 break;
@@ -78,7 +78,7 @@ exports.updateStat = async function (thisYM: any, noShow: boolean, day: any, peo
                 break;
         }
         //언제 노쇼라고 판단하고 반영할지는 미정
-        if (noShow == true) {
+        if (noShow > 1) {
             const absQuery = "update stat set no_show=no_show+1 where `year_month`=?";
             await connection.query(absQuery, thisYM);
         }
