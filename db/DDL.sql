@@ -84,7 +84,10 @@ INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (1, '21:30:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (2, '17:50:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (4, '18:40:00') ;
 
-INSERT INTO `stat` (`year_month`) VALUES (202205);
 INSERT INTO `stat` (`year_month`, month_total, no_show, Mon, Tue, Wed, Thu, Fri, Sat, Sun, oneC, twoC, threeC, fourC)
 VALUES (202204, 50, 2, 6, 5, 6, 7, 2, 18, 6, 10, 20, 20, 0);
-INSERT INTO `stat` (`year_month`) VALUES (202206);
+INSERT INTO `stat` (`year_month`) VALUES (202412);
+INSERT INTO `stat` (`year_month`) VALUES (202501);
+INSERT INTO `stat` (`year_month`) VALUES (202004);
+update stat set month_total=20, no_show=5, Mon=3, Tue=1, Wed=1, Thu=1, Fri=2, Sat=2, Sun=10, oneC=7, twoC=6, threeC=5, fourC=2 where `year_month`=202412;
+update stat set month_total=30, no_show=9, Mon=5, Tue=0, Wed=2, Thu=4, Fri=5, Sat=7, Sun=7, oneC=6, twoC=9, threeC=7, fourC=8 where `year_month`=202501;
