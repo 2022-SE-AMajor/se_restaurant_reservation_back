@@ -1,4 +1,4 @@
-const { updateStat } = require("../data/updateStat");
+/*const { updateStat } = require("../data/updateStat");
 const { selectSpecificReservation } = require("../data/readData");
 const { alreadyUpdated } = require("../data/updateData");
 import { Request, Response } from "express";
@@ -55,3 +55,4 @@ export async function updatingStat(req: Request, res: Response) {
         });
     }
 }
+*/
