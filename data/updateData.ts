@@ -33,48 +33,64 @@ exports.updateReservation = async function (
         return false;
     }
 };
-exports.updateStatusShow = async function (date: any, time: any, table_id: any) {
+exports.updateStatusShow = async function (oid: any) {
     try {
         const connection = await updatePool.getConnection(async (conn: any) => conn);
         console.log("connection done");
         try {
-            const query =
-                "update reservation set status=status*0 from reservation where date=? and time = ? and table_id=?";
-            const params = [date, time, table_id];
-            await connection.query(query, params);
+            const query = "update reservation set status=0 where oid=?";
+            await connection.query(query, oid);
             console.log("query done");
             connection.release();
             return "고객이 도착했습니까? 알겠습니다.";
         } catch (err) {
-            console.error("query error");
+            console.error("updateStatusShow query error");
             connection.release();
             return false;
         }
     } catch (err) {
-        console.error("updateStatusShow connection error");
+        console.error("DB connection error");
         return false;
     }
 };
 
-exports.updateStatusNoShow = async function (date: any, time: any, table_id: any) {
+exports.updateStatusNoShow = async function (oid: any) {
     try {
         const connection = await updatePool.getConnection(async (conn: any) => conn);
         console.log("connection done");
         try {
-            const query =
-                "update reservation set status=status*2 from reservation where date=? and time = ? and table_id=?";
-            const params = [date, time, table_id];
-            await connection.query(query, params);
+            const query = "update reservation set status=2 where oid=?";
+            await connection.query(query, oid);
             console.log("query done");
             connection.release();
             return "약속 시간을 어겼나요? 알겠습니다.";
         } catch (err) {
-            console.error("query error");
+            console.error("updateStatusNoShow query error");
             connection.release();
             return false;
         }
     } catch (err) {
-        console.error("updateStatusNoShow connection error");
+        console.error("DB connection error");
+        return false;
+    }
+};
+exports.alreadyUpdated = async function (oid: any) {
+    try {
+        const connection = await updatePool.getConnection(async (conn: any) => conn);
+        console.log("connection done");
+        try {
+            const query = "update reservation set status=-1 where oid=?";
+            await connection.query(query, oid);
+            console.log("query done");
+            connection.release();
+            return "통계에 반영했습니다.";
+        } catch (err) {
+            console.error("alreadyUpdated query error");
+            connection.release();
+            return false;
+        }
+    } catch (err) {
+        console.error("DB connection error");
         return false;
     }
 };

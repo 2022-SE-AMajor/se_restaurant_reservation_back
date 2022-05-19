@@ -21,7 +21,7 @@ import {
     showAllStat,
 } from "./controller/readStatController";
 import { insertStat } from "./controller/createStatController";
-import { updating } from "./controller/updateStatController";
+import { updatingStat } from "./controller/updateStatController";
 import { autodDeleteReservation } from "./controller/autoDeleteController";
 import { dDeleteReservation } from "./controller/deleteController";
 import { listReservation } from "./controller/listController";
@@ -57,9 +57,10 @@ app.get("/reserveOnSite", ajaxOutPutTableList);
 app.post("/reserveOnSite", createReservationOnSite);
 
 app.post("/arrivetime", arriveTime);
-app.put("/stat", insertStat);
-app.patch("/stat", updating);
+app.put("/", insertStat);
 app.get("/stat", showStat);
+app.get("/stat/refresh", viewAllReservaion);
+app.patch("/stat/refresh", updatingStat);
 app.get("/stat/abs", showNoShowStat);
 app.get("/stat/day", showDayOfWeekStat);
 app.get("/stat/num", showNumOfCustStat);
