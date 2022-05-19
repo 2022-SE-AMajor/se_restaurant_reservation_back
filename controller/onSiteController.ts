@@ -6,8 +6,8 @@ export async function ajaxOutPutTableList(req: Request, res: Response) {
     const { year, month, date, time } = req.body;
     // console.log(year, month, date, time);
     const selectedDate = `${year}-${month}-${date}`;
-    let now = new Date(); // 한국시간 기준 아님
-    let dateTime = new Date(`${selectedDate}T${time}`); //한국시간 기준 아님
+    let now = new Date();
+    let dateTime = new Date(`${selectedDate}T${time}`);
     // console.log(now);
     // console.log(dateTime);
     if (now > dateTime) {

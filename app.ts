@@ -50,7 +50,7 @@ app.get("/readReservation", readReservation);
 
 app.get("/modifyReservation", viewAllReservaion);
 app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
-app.put("/modifyReservation/:oid", modifyReservation);
+app.post("/modifyReservation/:oid", modifyReservation);
 app.patch("/modifyReservation/abs", decidingNoShow);
 
 app.get("/reserveOnSite", ajaxOutPutTableList);
