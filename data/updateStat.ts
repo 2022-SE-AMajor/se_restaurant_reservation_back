@@ -4,7 +4,7 @@ exports.updateStat = async function (thisYM: any, noShow: any, day: any, people:
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
     const query = "update stat set month_total=month_total+1 where `year_month`=?";
     const [row] = await connection.query(query, thisYM);
-    if (row.changedRows == 0) return "이 날짜의 데이터는 존재하지 않습니다.";
+    if (row.changedRows == 0) return "이 날짜의 통계는 존재하지 않습니다.";
     console.log(`connection done.`);
     try {
         switch (day) {
