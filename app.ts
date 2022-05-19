@@ -5,12 +5,7 @@ const morgan = require("morgan");
 import { login } from "./controller/auth";
 import { isValidDateTimeWhenCreating, createReservation } from "./controller/insertController";
 import { readReservation } from "./controller/readController";
-import {
-    viewAllReservaion,
-    isValidDateTimeWhenUpdating,
-    modifyReservation,
-    decidingNoShow,
-} from "./controller/updateController";
+import { viewAllReservaion, isValidDateTimeWhenUpdating, modifyReservation } from "./controller/updateController";
 import { ajaxOutPutTableList, createReservationOnSite } from "./controller/onSiteController";
 import { arriveTime } from "./controller/arriveController";
 import {
@@ -21,7 +16,7 @@ import {
     showAllStat,
 } from "./controller/readStatController";
 import { insertStat } from "./controller/createStatController";
-import { updatingStat } from "./controller/updateStatController";
+//import { updatingStat } from "./controller/updateStatController";
 import { autodDeleteReservation } from "./controller/autoDeleteController";
 import { dDeleteReservation } from "./controller/deleteController";
 import { listReservation } from "./controller/listController";
@@ -50,7 +45,7 @@ app.get("/readReservation", readReservation);
 app.get("/modifyReservation", viewAllReservaion);
 app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
 app.post("/modifyReservation/:oid", modifyReservation);
-app.patch("/modifyReservation/abs", decidingNoShow);
+//app.patch("/modifyReservation/abs", decidingNoShow);
 
 app.get("/reserveOnSite", ajaxOutPutTableList);
 app.post("/reserveOnSite", createReservationOnSite);
@@ -59,7 +54,7 @@ app.post("/arrivetime", arriveTime);
 app.put("/", insertStat);
 app.get("/stat", showStat);
 app.get("/stat/refresh", viewAllReservaion);
-app.patch("/stat/refresh", updatingStat);
+//app.patch("/stat/refresh", updatingStat);
 app.get("/stat/abs", showNoShowStat);
 app.get("/stat/day", showDayOfWeekStat);
 app.get("/stat/num", showNumOfCustStat);
