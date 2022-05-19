@@ -1,13 +1,16 @@
 const { insertReservation } = require("../data/insertData");
 const { selectTableIdList } = require("../data/readData");
+// const { sListReservation } = require("../data/listData"); // import sListReservation
+// const {autoDeleteReservation} = require("../data/autoDeleteData"); // import autoDeleteReservation
 import { Request, Response } from "express";
 
 export async function isValidDateTimeWhenCreating(req: Request, res: Response) {
     const { year, month, date, time } = req.body;
     // console.log(year, month, date, time);
+    // const [a] = await sListReservation(); // select 현재 전체 예약 현황
     const selectedDate = `${year}-${month}-${date}`;
-    let now = new Date(); // 한국시간 기준 아님
-    let dateTime = new Date(`${selectedDate}T${time}`); //한국시간 기준 아님
+    let now = new Date();
+    let dateTime = new Date(`${selectedDate}T${time}`);
     // console.log(now);
     // console.log(dateTime);
     if (now > dateTime) {
@@ -17,6 +20,10 @@ export async function isValidDateTimeWhenCreating(req: Request, res: Response) {
             message: "에러: 지난 날짜입니다.",
         });
     }
+    // const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신
+    /* 
+        자동삭제가 잘 되었는지 res.send
+    */
     const selectTableIdListRow = await selectTableIdList(selectedDate, time);
 
     let TableList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
