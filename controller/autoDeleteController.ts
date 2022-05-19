@@ -9,7 +9,7 @@ export async function autodDeleteReservation(req: Request, res: Response) {
 
     const autoDeleteReservationRow = await autoDeleteReservation(a);
 
-    if (true) {
+    if (autoDeleteReservationRow) {
         return res.send({
             result: "시간 초과 자동 예약 삭제 성공",
             isSuccess: true,
