@@ -37,7 +37,6 @@ app.post("/login", login);
 app.post("/reserve", createReservation);
 app.post("/readReservation", readReservation);
 app.delete("/autoDelete", autodDeleteReservation);
-
 app.delete("/delete", dDeleteReservation);
 app.get("/list", listReservation);
 
