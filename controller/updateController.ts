@@ -89,7 +89,7 @@ export async function modifyReservation(req: Request, res: Response) {
         });
     }
 }
-export async function decidingNoShow(req: Request, res: Response) {
+/*export async function decidingNoShow(req: Request, res: Response) {
     const { oid } = req.body;
     const now = `${new Date().getHours()}:${new Date().getMinutes()}`;
     let changeRow;
@@ -121,4 +121,4 @@ export async function decidingNoShow(req: Request, res: Response) {
             message: "갱신 실패",
         });
     }
-}
+}*/

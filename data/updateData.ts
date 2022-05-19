@@ -5,7 +5,6 @@ exports.updateReservation = async function (
     covers: any,
     date: any,
     time: any,
-    day: any,
     table_id: any,
     name: any,
     phone_number: any,
@@ -17,7 +16,7 @@ exports.updateReservation = async function (
         try {
             const query =
                 "update reservation set covers=?, date=?, time=?, table_id=?, name=?, phone_number=? where oid = ?;";
-            const params = [covers, date, time, day, table_id, name, phone_number, oid];
+            const params = [covers, date, time, table_id, name, phone_number, oid];
             const [row] = await connection.query(query, params);
             // console.log(row);
             connection.release();
@@ -33,7 +32,7 @@ exports.updateReservation = async function (
         return false;
     }
 };
-exports.updateStatusShow = async function (oid: any) {
+/*exports.updateStatusShow = async function (oid: any) {
     try {
         const connection = await updatePool.getConnection(async (conn: any) => conn);
         console.log("connection done");
@@ -93,4 +92,4 @@ exports.alreadyUpdated = async function (oid: any) {
         console.error("DB connection error");
         return false;
     }
-};
+};*/
