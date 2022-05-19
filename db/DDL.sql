@@ -16,11 +16,9 @@ CREATE TABLE `Reservation` (
   `covers` int NOT NULL, -- 예약인원
   `date` date NOT NULL, -- 날짜
   `time` time NOT NULL, -- 시간 
-  `day` int NOT NULL, --요일, 1은 일요일, 7은 토요일
   `table_id` int NOT NULL, -- 테이블번호, 피그마에 따르면 왼쪽위부터 오른쪽아래순으로 1~ 16번까지 범위.
   `name` varchar(32) NOT NULL, -- 사용자 이름
   `phone_number` char(13) NOT NULL, -- 사용자 전화번호
-  `status` int DEFAULT 1, --예약 상태, 1이면 예약 중, 0이면 도착, 2 이상이면 노쇼
   PRIMARY KEY (`oid`)
   /*KEY `table_id_idx` (`table_id`),
   CONSTRAINT `table_id` FOREIGN KEY (`table_id`) REFERENCES `table` (`table_id`)*/
@@ -69,16 +67,16 @@ INSERT INTO `table` (table_id, places) VALUES (8, 4) ;
 INSERT INTO `table` (table_id, places) VALUES (9, 4) ;
 INSERT INTO `table` (table_id, places) VALUES (10, 4) ;
 
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (4, '2020-04-06', '22:00:00', 3, 1, 'Gihwon', '01022223333') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (3, '2020-04-06', '18:00:00', 3, 3, 'jin', '010-2232-3333') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (4, '2020-04-07', '18:30:00', 3, 2, 'jin', '010-2232-3333') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (2, '2020-04-06', '19:00:00', 3, 4, 'kim', '01022253133') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (2, '2020-04-07', '18:00:00', 3, 3, 'kim', '01022253133') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (3, '2020-04-07', '21:00:00', 3, 2, 'Gihwon', '01022223333') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (3, '2020-04-06', '21:00:00', 3, 6, 'lee', '010-5322-3533') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (4, '2020-04-07', '19:00:00', 3, 7, 'lee', '010-5322-3533') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (3, '2020-04-06', '18:00:00', 3, 5, 'choi', '01012343873') ;
-INSERT INTO reservation (covers, date, time, day, table_id, name, phone_number ) VALUES (4, '2020-04-07', '21:00:00', 3, 8, 'choi', '01012343873') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (4, '2020-04-06', '22:00:00', 1, 'Gihwon', '01022223333') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (3, '2020-04-06', '18:00:00', 3, 'jin', '010-2232-3333') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (4, '2020-04-07', '18:30:00', 2, 'jin', '010-2232-3333') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (2, '2020-04-06', '19:00:00', 4, 'kim', '01022253133') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (2, '2020-04-07', '18:00:00', 3, 'kim', '01022253133') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (3, '2020-04-07', '21:00:00', 2, 'Gihwon', '01022223333') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (3, '2020-04-06', '21:00:00', 6, 'lee', '010-5322-3533') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (4, '2020-04-07', '19:00:00', 7, 'lee', '010-5322-3533') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (3, '2020-04-06', '18:00:00', 5, 'choi', '01012343873') ;
+INSERT INTO reservation (covers, date, time, table_id, name, phone_number ) VALUES (4, '2020-04-07', '21:00:00', 8, 'choi', '01012343873') ;
 
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (1, '21:30:00') ;
 INSERT INTO `arrivaltime` (oid, arrival_time) VALUES (2, '17:50:00') ;
