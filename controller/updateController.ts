@@ -1,5 +1,5 @@
 const { updateReservation, updateStatusShow, updateStatusNoShow } = require("../data/updateData");
-const { selectAllReservation, selectTableIdList, selectReservation } = require("../data/readData");
+const { selectAllReservation, selectTableIdList, selectSpecificReservation } = require("../data/readData");
 import { Request, Response } from "express";
 
 export async function viewAllReservaion(req: Request, res: Response) {
@@ -22,12 +22,10 @@ export async function viewAllReservaion(req: Request, res: Response) {
 
 export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
     const { year, month, date, time } = req.body;
-    // console.log(year, month, date, time);
     const selectedDate = `${year}-${month}-${date}`;
     let now = new Date(); // 한국시간 기준 아님
     let dateTime = new Date(`${selectedDate}T${time}`); //한국시간 기준 아님
-    // console.log(now);
-    // console.log(dateTime);
+
     if (now > dateTime) {
         return res.send({
             isSuccess: false,
@@ -39,10 +37,8 @@ export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
 
     let TableList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     for (var i = 0; i < selectTableIdListRow.length; i++) {
-        // console.log(selectTableIdListRow[i]);
         delete TableList[selectTableIdListRow[i].table_id - 1];
     }
-    // console.log(TableList);
 
     if (selectTableIdListRow.length == 16) {
         return res.send({
@@ -72,12 +68,12 @@ export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
 
 export async function modifyReservation(req: Request, res: Response) {
     const { oid } = req.params;
-    const { date, time } = req.query;
+    const { date, time, day } = req.query;
     const { covers, table_id, name, phone_number } = req.body;
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
 
-    const updateReservationRow = await updateReservation(oid, covers, date, time, table_id, name, phone_number);
+    const updateReservationRow = await updateReservation(oid, covers, date, time, day, table_id, name, phone_number);
 
     if (updateReservationRow) {
         return res.send({
@@ -94,11 +90,10 @@ export async function modifyReservation(req: Request, res: Response) {
     }
 }
 export async function decidingNoShow(req: Request, res: Response) {
-    const { time, table } = req.body;
-    const today = `${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`,
-        now = `${new Date().getHours()}:${new Date().getMinutes()}`;
-    let changeRow = false;
-    const bookRow = await selectReservation(today, time);
+    const { oid } = req.body;
+    const now = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    let changeRow;
+    const bookRow = await selectSpecificReservation(oid);
     if (bookRow == "") {
         return res.send({
             isSuccess: true,
@@ -106,9 +101,11 @@ export async function decidingNoShow(req: Request, res: Response) {
             message: "갱신할 예약이 없습니다.",
         });
     }
-
-    if (time >= now) changeRow = await updateStatusShow(today, time, table);
-    else changeRow = await updateStatusNoShow(today, time, table);
+    console.log(bookRow, bookRow[0][`time`], now);
+    if (bookRow[0][`status`] == -1) changeRow = "이미 통계에 반영한 예약이라 예약 상태를 바꿀 수 없습니다.";
+    else if (bookRow[0][`time`] >= now) changeRow = await updateStatusShow(oid);
+    else changeRow = await updateStatusNoShow(oid);
+    console.log(oid, changeRow);
 
     if (changeRow) {
         return res.send({
