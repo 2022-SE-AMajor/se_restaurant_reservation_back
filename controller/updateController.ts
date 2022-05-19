@@ -68,12 +68,12 @@ export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
 
 export async function modifyReservation(req: Request, res: Response) {
     const { oid } = req.params;
-    const { date, time, day } = req.query;
+    const { date, time } = req.query;
     const { covers, table_id, name, phone_number } = req.body;
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
 
-    const updateReservationRow = await updateReservation(oid, covers, date, time, day, table_id, name, phone_number);
+    const updateReservationRow = await updateReservation(oid, covers, date, time, table_id, name, phone_number);
 
     if (updateReservationRow) {
         return res.send({
@@ -89,7 +89,7 @@ export async function modifyReservation(req: Request, res: Response) {
         });
     }
 }
-export async function decidingNoShow(req: Request, res: Response) {
+/*export async function decidingNoShow(req: Request, res: Response) {
     const { oid } = req.body;
     const now = `${new Date().getHours()}:${new Date().getMinutes()}`;
     let changeRow;
@@ -121,4 +121,4 @@ export async function decidingNoShow(req: Request, res: Response) {
             message: "갱신 실패",
         });
     }
-}
+}*/
