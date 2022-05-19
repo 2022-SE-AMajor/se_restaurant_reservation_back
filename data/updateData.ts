@@ -16,7 +16,7 @@ exports.updateReservation = async function (
         console.log("connection done");
         try {
             const query =
-                "update reservation set covers=?, date=?, time=?, day=?, table_id=?, name=?, phone_number=? where oid = ?;";
+                "update reservation set covers=?, date=?, time=?, table_id=?, name=?, phone_number=? where oid = ?;";
             const params = [covers, date, time, day, table_id, name, phone_number, oid];
             const [row] = await connection.query(query, params);
             // console.log(row);
