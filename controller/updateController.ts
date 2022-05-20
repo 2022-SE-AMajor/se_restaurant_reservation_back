@@ -99,36 +99,3 @@ export async function modifyReservation(req: Request, res: Response) {
         });
     }
 }
-/*export async function decidingNoShow(req: Request, res: Response) {
-    const { oid } = req.body;
-    const now = `${new Date().getHours()}:${new Date().getMinutes()}`;
-    let changeRow;
-    const bookRow = await selectSpecificReservation(oid);
-    if (bookRow == "") {
-        return res.send({
-            isSuccess: true,
-            code: 160,
-            message: "갱신할 예약이 없습니다.",
-        });
-    }
-    console.log(bookRow, bookRow[0][`time`], now);
-    if (bookRow[0][`status`] == -1) changeRow = "이미 통계에 반영한 예약이라 예약 상태를 바꿀 수 없습니다.";
-    else if (bookRow[0][`time`] >= now) changeRow = await updateStatusShow(oid);
-    else changeRow = await updateStatusNoShow(oid);
-    console.log(oid, changeRow);
-
-    if (changeRow) {
-        return res.send({
-            result: changeRow,
-            isSuccess: true,
-            code: 557,
-            message: changeRow,
-        });
-    } else {
-        return res.send({
-            isSuccess: false,
-            code: 57,
-            message: "갱신 실패",
-        });
-    }
-}*/
