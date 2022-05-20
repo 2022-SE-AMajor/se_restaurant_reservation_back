@@ -20,9 +20,11 @@ exports.autoDeleteReservation = async function (a: any) {
 
             if (now > dateTime) {
                 console.log("시간 초과 자동 예약 삭제");
-                const query = "delete from reservation where oid = ?;";
+                const query1 = "delete from arrivaltime where oid = ? ";
                 const params = [a[i].oid];
-                const [row] = await connection.query(query, params);
+                connection.query(query1, params);
+                const query2 = "delete from reservation where oid = ?;";
+                const [row] = await connection.query(query2, params);
                 // console.log(row);
                 console.log("query done");
                 connection.release();
