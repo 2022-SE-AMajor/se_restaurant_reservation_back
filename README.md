@@ -6,7 +6,7 @@
 
 -   login and record arriveTime API : https://documenter.getpostman.com/view/20718843/UyxnCjJB
 
--   통계 생성, 조회, 갱신 + 노쇼 판별 : https://documenter.getpostman.com/view/20764696/UyxnD4Kf
+-   통계 생성, 조회 : https://documenter.getpostman.com/view/20764696/UyxnD4Kf
 
 -   delete API: https://documenter.getpostman.com/view/20776466/UyxnDQFy
 
