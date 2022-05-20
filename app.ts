@@ -49,7 +49,7 @@ app.get("/reserveOnSite", ajaxOutPutTableList);
 app.post("/reserveOnSite", createReservationOnSite);
 
 app.post("/arrivetime", arriveTime);
-app.put("/", insertStat);
+app.put("/login", insertStat);
 app.get("/stat", showStat);
 app.get("/stat/abs", showNoShowStat);
 app.get("/stat/day", showDayOfWeekStat);
