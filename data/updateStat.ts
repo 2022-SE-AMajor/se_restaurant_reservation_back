@@ -122,13 +122,11 @@ exports.reverseNumOfPeople = async function (thisYM: any, covers: any) {
     }
 };
 
-exports.updateNoShow = async function (thisYM: any, noShow: boolean) {
+exports.updateNoShow = async function (thisYM: any) {
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
     try {
-        if (noShow) {
-            const absQuery = "update stat set no_show=no_show+1 where `year_month`=?";
-            await connection.query(absQuery, thisYM);
-        }
+        const absQuery = "update stat set no_show=no_show+1 where `year_month`=?";
+        await connection.query(absQuery, thisYM);
         console.log(`query done.`);
         connection.release();
     } catch (err) {
@@ -137,13 +135,11 @@ exports.updateNoShow = async function (thisYM: any, noShow: boolean) {
     }
 };
 
-exports.reverseNoShow = async function (thisYM: any, noShow: boolean) {
+exports.reverseNoShow = async function (thisYM: any) {
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
     try {
-        if (!noShow) {
-            const absQuery = "update stat set no_show=no_show-1 where `year_month`=?";
-            await connection.query(absQuery, thisYM);
-        }
+        const absQuery = "update stat set no_show=no_show-1 where `year_month`=?";
+        await connection.query(absQuery, thisYM);
         console.log(`query done.`);
         connection.release();
     } catch (err) {

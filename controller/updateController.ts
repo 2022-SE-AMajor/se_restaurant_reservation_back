@@ -1,5 +1,6 @@
-const { updateReservation, updateStatusShow, updateStatusNoShow } = require("../data/updateData");
-const { selectAllReservation, selectTableIdList, selectSpecificReservation } = require("../data/readData");
+const { updateReservation } = require("../data/updateData");
+const { selectAllReservation, selectTableIdList, selectCovAndTimeOfReservation } = require("../data/readData");
+const { updateNumOfPeople, reverseNumOfPeople, updateWeekday, reverseWeekday } = require("../data/updateStat");
 import { Request, Response } from "express";
 
 export async function viewAllReservaion(req: Request, res: Response) {
@@ -72,9 +73,18 @@ export async function modifyReservation(req: Request, res: Response) {
     const { covers, table_id, name, phone_number } = req.body;
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
-
+    const thisYear = new Date().getFullYear(),
+        thisMonth = new Date().getMonth() + 1;
+    let thisYM = `0`;
+    if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
+    else thisYM = String(thisYear) + String(thisMonth);
+    //date만으로 thisYM 구할 수 있으면 위의 변수와 식은 필요없음
+    const lastReservationRow = await selectCovAndTimeOfReservation(oid);
+    await reverseNumOfPeople(thisYM, lastReservationRow[0][`covers`]);
+    //await reverseWeekday(thisYM, 기존요일);
     const updateReservationRow = await updateReservation(oid, covers, date, time, table_id, name, phone_number);
-
+    await updateNumOfPeople(thisYM, covers);
+    //await updateWeekday(thisYM, 새로운요일);
     if (updateReservationRow) {
         return res.send({
             isSuccess: true,

@@ -48,13 +48,13 @@ exports.selectReservation = async function (date: any, time: any) {
         return false;
     }
 };
-//통계 갱신 컨트롤러에서 날짜와 시각, 식탁 번호로 예약 상태 조회
-exports.selectSpecificReservation = async function (oid: any) {
+//updateController에서 oid로 예약 인원과 시각 조회
+exports.selectCovAndTimeOfReservation = async function (oid: any) {
     try {
         const connection = await readPool.getConnection(async (conn: any) => conn);
         console.log("connection done");
         try {
-            const query = "select covers, time from reservation where oid=?;";
+            const query = "select covers, date, time from reservation where oid=?;";
             const [row] = await connection.query(query, oid);
             connection.release();
             console.log("query done");
