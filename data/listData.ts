@@ -37,3 +37,20 @@ exports.sListReservation = async function () {
         return false;
     }
 };
+
+exports.listRecord = async function () {
+    const connection = await listPool.getConnection(async (conn: any) => conn);
+    console.log("connection done");
+
+    try {
+        const query = "select * from arrivaltime;";
+        const [row] = await connection.query(query);
+        console.log("query done");
+        connection.release();
+        return row;
+    } catch (err) {
+        console.error("listRecord query error");
+        connection.release();
+        return false;
+    }
+};
