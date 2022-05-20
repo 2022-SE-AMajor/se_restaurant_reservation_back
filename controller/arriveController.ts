@@ -16,17 +16,16 @@ export async function arriveTime(req: Request, res: Response) {
     }
     if (found[0][`table_id`] == table_id) {
         const oid = found[0][`oid`];
+        console.log(oid);
+        const arriveFound = await arriveData.insertArrival(oid);
+        const arriveRecord = await listRecord(oid);
+        const compTime = await selectCovAndTimeOfReservation(oid);
         const thisYear = new Date().getFullYear(),
             thisMonth = new Date().getMonth() + 1;
         let thisYM = `0`;
         if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
         else thisYM = String(thisYear) + String(thisMonth);
-
-        console.log(oid);
-        const arriveFound = await arriveData.insertArrival(oid);
-        const arriveRecord = await listRecord(oid);
-        const compTime = await selectCovAndTimeOfReservation(oid);
-        if (arriveRecord[0][`arrival_time`] <= compTime[0][`time`]) await reverseNoShow(thisYM);
+        if (arriveRecord[arriveRecord.length - 1][`arrival_time`] <= compTime[0][`time`]) await reverseNoShow(thisYM);
 
         if (arriveFound) {
             return res.send({
