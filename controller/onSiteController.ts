@@ -58,16 +58,15 @@ export async function createReservationOnSite(req: Request, res: Response) {
     const { covers, table_id, name, phone_number } = req.body;
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
-    const thisYear = new Date().getFullYear(),
-        thisMonth = new Date().getMonth() + 1;
+    const thisYear = new Date(`${date}`).getFullYear(),
+        thisMonth = new Date(`${date}`).getMonth() + 1;
     let thisYM = `0`;
     if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
     else thisYM = String(thisYear) + String(thisMonth);
 
     const insertReservationRow = await insertReservation(covers, date, time, table_id, name, phone_number);
     await updateNumOfPeople(thisYM, covers);
-    //await updateWeekday(thisYM, 요일);
-    //요일 구하는 거 해결하면 `요일`에 예약 날의 요일에 해당하는 변수를 넣으면 됨
+    await updateWeekday(thisYM, new Date(`${date}`).getDay());
     await updateNoShow(thisYM);
     await updateTotal(thisYM);
 
