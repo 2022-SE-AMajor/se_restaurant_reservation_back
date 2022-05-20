@@ -1,21 +1,51 @@
 import { Request, Response } from "express";
 
 const arriveData = require("../data/arriveData");
+const { listRecord } = require("../data/listData");
+const { selectCovAndTimeOfReservation } = require("../data/readData");
+const { reverseNoShow } = require("../data/updateStat");
+const { sListReservation } = require("../data/listData"); // import sListReservation
+const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation
 
 export async function arriveTime(req: Request, res: Response) {
     console.log("table_id", req.body);
-    const { table_id } = req.body;
+    const { table_id, date, time } = req.body;
+
+    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+
     console.log(table_id);
-    //const found: UserArrive = await findArriveTime({ oid });
-    const found = await arriveData.findArriveTime(table_id);
+
+    const found = await arriveData.findArriveTime(table_id, date, time);
     console.log(found[0][`table_id`]);
     if (!found) {
         return res.status(409).json({ message: `error` });
     }
     if (found[0][`table_id`] == table_id) {
         const oid = found[0][`oid`];
+
+        const thisYear = new Date().getFullYear(),
+            thisMonth = new Date().getMonth() + 1;
+        let thisYM = `0`;
+        if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
+        else thisYM = String(thisYear) + String(thisMonth);
+
+        const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
+
+        if (autoDeleteReservationRow) {
+            console.log("자동 예약 삭제 성공");
+        } else {
+            return res.send({
+                isSuccess: false,
+                code: 400,
+                message: "시간 초과 자동 예약 삭제 실패",
+            });
+        }
+
         console.log(oid);
         const arriveFound = await arriveData.insertArrival(oid);
+        const arriveRecord = await listRecord(oid);
+        const compTime = await selectCovAndTimeOfReservation(oid);
+        if (arriveRecord[0][`arrival_time`] <= compTime[0][`time`]) await reverseNoShow(thisYM);
 
         if (arriveFound) {
             return res.send({

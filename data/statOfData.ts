@@ -21,11 +21,15 @@ exports.selectNoShowStats = async function (chosenYM: any) {
     const connection = await statPool.getConnection(async (conn: any) => conn);
     console.log(`connection done.`);
     try {
-        const query = "select month_total, no_show from stat where `year_month`=? OR `year_month`=?";
-        let params;
-        if (chosenYM % 20 == 1) params = [chosenYM, chosenYM - 89]; //1월이면 작년 12월 선택
-        else params = [chosenYM, chosenYM - 1];
-        const [row] = await connection.query(query, params);
+        const query1 = "select month_total, no_show from stat where `year_month`=?",
+            query2 = "select month_total, no_show from stat where `year_month`=?";
+        let lastYM;
+        if (chosenYM % 20 == 1) lastYM = chosenYM - 89; //1월이면 작년 12월 선택
+        else lastYM = chosenYM - 1;
+        const [lastRow] = await connection.query(query1, lastYM),
+            [thisRow] = await connection.query(query2, chosenYM),
+            row = { lastRow, thisRow };
+        console.log(lastRow, thisRow, row);
         console.log(`query done.`);
         connection.release();
         return row;
@@ -84,3 +88,8 @@ exports.selectStats = async function (chosenYM: any) {
         return false;
     }
 };
+//통계의 6글자 키값 생성
+/*exports.getKeyOfStat = async function (year: any, month: any) {
+    if (month < 10) return String(year) + `0` + String(month);
+    else return String(year) + String(month);
+};*/
