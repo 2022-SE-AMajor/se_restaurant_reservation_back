@@ -152,32 +152,31 @@ exports.updateWeekday = async function (thisYM: any, day: any) {
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
     try {
         switch (day) {
-            //case는 요일을 어떻게 받냐에 따라 글자가 올 수도 있다.
-            case 2:
+            case 1:
                 const dayQuery1 = "update stat set Mon=Mon+1 where `year_month`=?";
                 await connection.query(dayQuery1, thisYM);
                 break;
-            case 3:
+            case 2:
                 const dayQuery2 = "update stat set Tue=Tue+1 where `year_month`=?";
                 await connection.query(dayQuery2, thisYM);
                 break;
-            case 4:
+            case 3:
                 const dayQuery3 = "update stat set Wed=Wed+1 where `year_month`=?";
                 await connection.query(dayQuery3, thisYM);
                 break;
-            case 5:
+            case 4:
                 const dayQuery4 = "update stat set Thu=Thu+1 where `year_month`=?";
                 await connection.query(dayQuery4, thisYM);
                 break;
-            case 6:
+            case 5:
                 const dayQuery5 = "update stat set Fri=Fri+1 where `year_month`=?";
                 await connection.query(dayQuery5, thisYM);
                 break;
-            case 7:
+            case 6:
                 const dayQuery6 = "update stat set Sat=Sat+1 where `year_month`=?";
                 await connection.query(dayQuery6, thisYM);
                 break;
-            case 1:
+            case 0:
                 const dayQuery7 = "update stat set Sun=Sun+1 where `year_month`=?";
                 await connection.query(dayQuery7, thisYM);
                 break;
@@ -197,32 +196,31 @@ exports.reverseWeekday = async function (thisYM: any, day: any) {
     const connection = await updateStatPool.getConnection(async (conn: any) => conn);
     try {
         switch (day) {
-            //case는 요일을 어떻게 받냐에 따라 글자가 올 수도 있다.
-            case 2:
+            case 1:
                 const dayQuery1 = "update stat set Mon=Mon-1 where `year_month`=?";
                 await connection.query(dayQuery1, thisYM);
                 break;
-            case 3:
+            case 2:
                 const dayQuery2 = "update stat set Tue=Tue-1 where `year_month`=?";
                 await connection.query(dayQuery2, thisYM);
                 break;
-            case 4:
+            case 3:
                 const dayQuery3 = "update stat set Wed=Wed-1 where `year_month`=?";
                 await connection.query(dayQuery3, thisYM);
                 break;
-            case 5:
+            case 4:
                 const dayQuery4 = "update stat set Thu=Thu-1 where `year_month`=?";
                 await connection.query(dayQuery4, thisYM);
                 break;
-            case 6:
+            case 5:
                 const dayQuery5 = "update stat set Fri=Fri-1 where `year_month`=?";
                 await connection.query(dayQuery5, thisYM);
                 break;
-            case 7:
+            case 6:
                 const dayQuery6 = "update stat set Sat=Sat-1 where `year_month`=?";
                 await connection.query(dayQuery6, thisYM);
                 break;
-            case 1:
+            case 0:
                 const dayQuery7 = "update stat set Sun=Sun-1 where `year_month`=?";
                 await connection.query(dayQuery7, thisYM);
                 break;
