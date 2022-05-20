@@ -54,7 +54,7 @@ exports.selectCovAndTimeOfReservation = async function (oid: any) {
         const connection = await readPool.getConnection(async (conn: any) => conn);
         console.log("connection done");
         try {
-            const query = "select covers, time from reservation where oid=?;";
+            const query = "select covers, date, time from reservation where oid=?;";
             const [row] = await connection.query(query, oid);
             connection.release();
             console.log("query done");

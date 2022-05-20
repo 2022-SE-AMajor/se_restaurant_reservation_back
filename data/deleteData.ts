@@ -11,7 +11,7 @@ exports.deleteReservation = async function (oid: any) {
         const params1 = [oid];
         connection.query(query1, params1);
         // console.log(row);
-        const query2 = " delete from reservation where oid = ?;";
+        const query2 = "delete from reservation where oid = ?;";
         const params2 = [oid];
         connection.query(query2, params2);
         console.log("query done");
