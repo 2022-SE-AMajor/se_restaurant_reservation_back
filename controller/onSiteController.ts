@@ -72,6 +72,7 @@ export async function createReservationOnSite(req: Request, res: Response) {
     const { covers, table_id, name, phone_number } = req.body;
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
+
     const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
     const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
@@ -84,17 +85,16 @@ export async function createReservationOnSite(req: Request, res: Response) {
             message: "시간 초과 자동 예약 삭제 실패",
         });
     }
-  
-    const thisYear = new Date().getFullYear(),
-        thisMonth = new Date().getMonth() + 1;
+
+    const thisYear = new Date(`${date}`).getFullYear(),
+        thisMonth = new Date(`${date}`).getMonth() + 1;
     let thisYM = `0`;
     if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
     else thisYM = String(thisYear) + String(thisMonth);
 
     const insertReservationRow = await insertReservation(covers, date, time, table_id, name, phone_number);
     await updateNumOfPeople(thisYM, covers);
-    //await updateWeekday(thisYM, 요일);
-    //요일 구하는 거 해결하면 `요일`에 예약 날의 요일에 해당하는 변수를 넣으면 됨
+    await updateWeekday(thisYM, new Date(`${date}`).getDay());
     await updateNoShow(thisYM);
     await updateTotal(thisYM);
 

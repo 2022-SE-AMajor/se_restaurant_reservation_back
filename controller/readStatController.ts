@@ -5,12 +5,25 @@ const {
     selectNumOfCustStats,
     allStats,
 } = require("../data/statOfData");
+const { sListReservation } = require("../data/listData"); // import sListReservation
+const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation
 
 import { Request, Response } from "express";
 
 export async function showStat(req: Request, res: Response) {
     const { year_month } = req.body;
     const selected = await selectStats(year_month);
+    const [a] = await sListReservation();
+    const autoDeleteReservationRow = await autoDeleteReservation(a);
+    if (autoDeleteReservationRow) {
+        console.log("자동 예약 삭제 성공");
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "시간 초과 자동 예약 삭제 실패",
+        });
+    }
 
     if (selected == "") {
         return res.send({
@@ -44,6 +57,17 @@ export async function showStat(req: Request, res: Response) {
 export async function showNoShowStat(req: Request, res: Response) {
     const { year_month } = req.body;
     const noShow = await selectNoShowStats(year_month);
+    const [a] = await sListReservation();
+    const autoDeleteReservationRow = await autoDeleteReservation(a);
+    if (autoDeleteReservationRow) {
+        console.log("자동 예약 삭제 성공");
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "시간 초과 자동 예약 삭제 실패",
+        });
+    }
 
     if (noShow == "" || noShow[`thisRow`] == "") {
         return res.send({
@@ -55,7 +79,6 @@ export async function showNoShowStat(req: Request, res: Response) {
     }
 
     const this_total = noShow[`thisRow`][0][`month_total`];
-
     if (this_total == 0) {
         return res.send({
             result: noShow,
@@ -67,7 +90,6 @@ export async function showNoShowStat(req: Request, res: Response) {
 
     const this_noShow = noShow[`thisRow`][0][`no_show`],
         this_rate = (this_noShow / this_total) * 100;
-
     if (noShow[`lastRow`] == "") {
         let last_empty = "저번 달의 통계는 없습니다.";
         return res.send({
@@ -80,7 +102,6 @@ export async function showNoShowStat(req: Request, res: Response) {
 
     const last_total = noShow[`lastRow`][0][`month_total`],
         last_noshow = noShow[`lastRow`][0][`no_show`];
-
     let last_rate = 0,
         comp_rate = 0;
     if (last_total != 0) (last_rate = (last_noshow / last_total) * 100), (comp_rate = this_rate - last_rate);
@@ -103,6 +124,17 @@ export async function showNoShowStat(req: Request, res: Response) {
 export async function showDayOfWeekStat(req: Request, res: Response) {
     const { year_month } = req.body;
     const dayOfWeek = await selectDayOfWeekStats(year_month);
+    const [a] = await sListReservation();
+    const autoDeleteReservationRow = await autoDeleteReservation(a);
+    if (autoDeleteReservationRow) {
+        console.log("자동 예약 삭제 성공");
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "시간 초과 자동 예약 삭제 실패",
+        });
+    }
 
     if (dayOfWeek == "") {
         return res.send({
@@ -136,6 +168,17 @@ export async function showDayOfWeekStat(req: Request, res: Response) {
 export async function showNumOfCustStat(req: Request, res: Response) {
     const { year_month } = req.body;
     const numOfCust = await selectNumOfCustStats(year_month);
+    const [a] = await sListReservation();
+    const autoDeleteReservationRow = await autoDeleteReservation(a);
+    if (autoDeleteReservationRow) {
+        console.log("자동 예약 삭제 성공");
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "시간 초과 자동 예약 삭제 실패",
+        });
+    }
     if (numOfCust == "") {
         return res.send({
             result: numOfCust,
@@ -177,6 +220,17 @@ export async function showNumOfCustStat(req: Request, res: Response) {
 }
 export async function showAllStat(req: Request, res: Response) {
     const allStatsRow = await allStats();
+    const [a] = await sListReservation();
+    const autoDeleteReservationRow = await autoDeleteReservation(a);
+    if (autoDeleteReservationRow) {
+        console.log("자동 예약 삭제 성공");
+    } else {
+        return res.send({
+            isSuccess: false,
+            code: 400,
+            message: "시간 초과 자동 예약 삭제 실패",
+        });
+    }
 
     if (allStatsRow) {
         return res.send({
