@@ -60,7 +60,7 @@ exports.autoDeletePool = mysql2.createPool({
     database: "restaurantreservation",
     password: "1111",
     dateStrings: "date",
-});
+}); //이거 중복인가?
 
 export const db = pool.promise();
 
@@ -74,7 +74,6 @@ exports.arrivePool = mysql2.createPool({
 export const statPool = pool.promise();
 export const createStatPool = pool.promise();
 export const updateStatPool = pool.promise();
-export const noShowPool = pool.promise();
 export const listPool = pool.promise();
 export const deletePool = pool.promise();
 export const autoDeletePool = pool.promise();
