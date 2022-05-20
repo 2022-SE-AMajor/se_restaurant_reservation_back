@@ -15,7 +15,7 @@ export async function arriveTime(req: Request, res: Response) {
     if (found[0][`table_id`] == table_id) {
         const oid = found[0][`oid`];
         console.log(oid);
-        const arriveFound = await arriveData.insertArrival(table_id);
+        const arriveFound = await arriveData.insertArrival(oid);
 
         if (arriveFound) {
             return res.send({

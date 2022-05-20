@@ -22,7 +22,7 @@ exports.findArriveTime = async function (id: any) {
             connection.release();
             return row;
         } catch {
-            console.error("query error");
+            console.error("이미 도착기록이 기록되어있습니다.");
             connection.release();
             return false;
         }
@@ -36,15 +36,17 @@ exports.insertArrival = async function (oid: any) {
     try {
         const connection = await arrivePool.getConnection(async (conn: any) => conn);
         try {
-            const reservation = oid;
+            const reservation = oid.toString();
             const date = new Date();
             const time = date.toLocaleTimeString("en-GB");
             const stringTime = time.toString();
             console.log(stringTime);
             console.log(reservation);
-            const query = "UPDATE arrivaltime SET arrival_time = ? WHERE oid = ?;";
-            const params = [stringTime, reservation];
+            const query = "INSERT INTO arrivaltime (`oid`, `arrival_time`) VALUES (?, ?);";
+            const params = [reservation, stringTime];
+            console.log(params);
             const [row] = await connection.query(query, params);
+            console.log("query success");
             connection.release();
             return row;
         } catch {
