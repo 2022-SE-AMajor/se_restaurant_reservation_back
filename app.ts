@@ -16,7 +16,6 @@ import {
     showAllStat,
 } from "./controller/readStatController";
 import { insertStat } from "./controller/createStatController";
-//import { updatingStat } from "./controller/updateStatController";
 import { autodDeleteReservation } from "./controller/autoDeleteController";
 import { dDeleteReservation } from "./controller/deleteController";
 import { listReservation } from "./controller/listController";
@@ -29,8 +28,8 @@ app.use(cors());
 app.use(morgan("dev"));
 
 app.post("/login", login);
-app.post("/reserve", createReservation);
-app.post("/readReservation", readReservation);
+app.post("/reserve", createReservation); //중복a
+app.post("/readReservation", readReservation); //중복b
 app.delete("/autoDelete", autodDeleteReservation);
 app.delete("/delete", dDeleteReservation);
 app.get("/list", listReservation);
@@ -38,14 +37,13 @@ app.get("/list", listReservation);
 app.get("/login", login);
 
 app.get("/reserve", isValidDateTimeWhenCreating);
-app.post("/reserve", createReservation);
+app.post("/reserve", createReservation); //중복a
 
-app.get("/readReservation", readReservation);
+app.get("/readReservation", readReservation); //중복b
 
 app.get("/modifyReservation", viewAllReservaion);
 app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
 app.post("/modifyReservation/:oid", modifyReservation);
-//app.patch("/modifyReservation/abs", decidingNoShow);
 
 app.get("/reserveOnSite", ajaxOutPutTableList);
 app.post("/reserveOnSite", createReservationOnSite);
@@ -53,8 +51,6 @@ app.post("/reserveOnSite", createReservationOnSite);
 app.post("/arrivetime", arriveTime);
 app.put("/", insertStat);
 app.get("/stat", showStat);
-app.get("/stat/refresh", viewAllReservaion);
-//app.patch("/stat/refresh", updatingStat);
 app.get("/stat/abs", showNoShowStat);
 app.get("/stat/day", showDayOfWeekStat);
 app.get("/stat/num", showNumOfCustStat);
