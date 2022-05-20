@@ -2,7 +2,30 @@ const { createStat } = require("../data/createStat");
 import { Request, Response } from "express";
 
 export async function insertStat(req: Request, res: Response) {
-    const createStatRow = await createStat();
+    let thisYear = new Date().getFullYear(),
+        thisMonth = new Date().getMonth() + 1;
+    let thisYM = `0`;
+    if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
+    else thisYM = String(thisYear) + String(thisMonth);
+    await createStat(thisYM);
+
+    thisMonth++;
+    if (thisMonth > 12) {
+        thisYear++;
+        thisMonth = 1;
+    }
+    if (thisMonth < 10) thisYM = String(thisYear) + `0` + String(thisMonth);
+    else thisYM = String(thisYear) + String(thisMonth);
+    await createStat(thisYM);
+
+    thisMonth++;
+    if (thisMonth > 12) {
+        thisYear++;
+        thisMonth = 1;
+    }
+    if (thisMonth < 10) thisYM = String(thisYear) + `0` + String(thisMonth);
+    else thisYM = String(thisYear) + String(thisMonth);
+    const createStatRow = await createStat(thisYM);
 
     if (createStatRow) {
         return res.send({

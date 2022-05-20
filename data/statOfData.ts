@@ -88,3 +88,8 @@ exports.selectStats = async function (chosenYM: any) {
         return false;
     }
 };
+//통계의 6글자 키값 생성
+/*exports.getKeyOfStat = async function (year: any, month: any) {
+    if (month < 10) return String(year) + `0` + String(month);
+    else return String(year) + String(month);
+};*/
