@@ -2,6 +2,7 @@ const { insertReservation } = require("../data/insertData");
 const { selectTableIdList } = require("../data/readData");
 const { sListReservation } = require("../data/listData"); // import sListReservation **자동 삭제 참고할 부분
 const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation **자동 삭제 참고할 부분
+const { updateTotal, updateNumOfPeople, updateWeekday, updateNoShow } = require("../data/updateStat");
 import { Request, Response } from "express";
 
 export async function ajaxOutPutTableList(req: Request, res: Response) {
@@ -83,8 +84,19 @@ export async function createReservationOnSite(req: Request, res: Response) {
             message: "시간 초과 자동 예약 삭제 실패",
         });
     }
+  
+    const thisYear = new Date().getFullYear(),
+        thisMonth = new Date().getMonth() + 1;
+    let thisYM = `0`;
+    if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
+    else thisYM = String(thisYear) + String(thisMonth);
 
     const insertReservationRow = await insertReservation(covers, date, time, table_id, name, phone_number);
+    await updateNumOfPeople(thisYM, covers);
+    //await updateWeekday(thisYM, 요일);
+    //요일 구하는 거 해결하면 `요일`에 예약 날의 요일에 해당하는 변수를 넣으면 됨
+    await updateNoShow(thisYM);
+    await updateTotal(thisYM);
 
     if (insertReservationRow) {
         return res.send({
