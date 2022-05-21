@@ -39,8 +39,8 @@ export async function arriveTime(req: Request, res: Response) {
         const arriveFound = await arriveData.insertArrival(oid);
         const arriveRecord = await listRecord(oid);
         const compTime = await selectCovAndTimeOfReservation(oid);
-        const thisYear = new Date().getFullYear(),
-            thisMonth = new Date().getMonth() + 1;
+        const thisYear = new Date(compTime[0][`date`]).getFullYear(),
+            thisMonth = new Date(compTime[0][`date`]).getMonth() + 1;
         let thisYM = `0`;
         if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
         else thisYM = String(thisYear) + String(thisMonth);
