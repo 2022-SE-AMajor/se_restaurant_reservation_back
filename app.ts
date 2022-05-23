@@ -7,7 +7,7 @@ import { isValidDateTimeWhenCreating, createReservation } from "./controller/ins
 import { readReservation } from "./controller/readController";
 import { viewAllReservaion, isValidDateTimeWhenUpdating, modifyReservation } from "./controller/updateController";
 import { ajaxOutPutTableList, createReservationOnSite } from "./controller/onSiteController";
-import { arriveTime } from "./controller/arriveController";
+import { arriveTime, getArriveTime } from "./controller/arriveController";
 import {
     showStat,
     showNoShowStat,
@@ -53,8 +53,8 @@ app.post("/modifyReservation/:oid", modifyReservation);
 
 // app.get("/reserveOnSite", ajaxOutPutTableList);
 // app.post("/reserveOnSite", createReservationOnSite);
-
-// app.post("/arrivetime", arriveTime);
+app.get("/arrivetime/:oid", getArriveTime);
+app.post("/arrivetime", arriveTime);
 // app.put("/login", insertStat);
 // app.get("/stat", showStat);
 // app.get("/stat/abs", showNoShowStat);

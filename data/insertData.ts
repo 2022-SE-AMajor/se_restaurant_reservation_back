@@ -1,5 +1,6 @@
 const { insertPool } = require("../db/database.ts");
 
+//예약 넣기
 exports.insertReservation = async function (
     covers: any,
     date: any,

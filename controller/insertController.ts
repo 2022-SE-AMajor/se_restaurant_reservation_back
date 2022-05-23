@@ -74,29 +74,29 @@ export async function createReservation(req: Request, res: Response) {
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
 
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
-    const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
+    // const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    // const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
-    if (autoDeleteReservationRow) {
-        console.log("자동 예약 삭제 성공");
-    } else {
-        return res.send({
-            isSuccess: false,
-            code: 400,
-            message: "시간 초과 자동 예약 삭제 실패",
-        });
-    }
+    // if (autoDeleteReservationRow) {
+    //     console.log("자동 예약 삭제 성공");
+    // } else {
+    //     return res.send({
+    //         isSuccess: false,
+    //         code: 400,
+    //         message: "시간 초과 자동 예약 삭제 실패",
+    //     });
+    // }
 
-    const thisYear = new Date(`${date}`).getFullYear(),
-        thisMonth = new Date(`${date}`).getMonth() + 1;
-    let thisYM = `0`;
-    if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
-    else thisYM = String(thisYear) + String(thisMonth);
+    // const thisYear = new Date(`${date}`).getFullYear(),
+    //     thisMonth = new Date(`${date}`).getMonth() + 1;
+    // let thisYM = `0`;
+    // if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
+    // else thisYM = String(thisYear) + String(thisMonth);
     const insertReservationRow = await insertReservation(covers, date, time, table_id, name, phone_number);
-    await updateNumOfPeople(thisYM, covers);
-    await updateWeekday(thisYM, new Date(`${date}`).getDay());
-    await updateNoShow(thisYM);
-    await updateTotal(thisYM);
+    // await updateNumOfPeople(thisYM, covers);
+    // await updateWeekday(thisYM, new Date(`${date}`).getDay());
+    // await updateNoShow(thisYM);
+    // await updateTotal(thisYM);
     if (insertReservationRow) {
         return res.send({
             isSuccess: true,

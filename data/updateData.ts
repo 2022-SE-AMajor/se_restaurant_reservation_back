@@ -32,3 +32,32 @@ exports.updateReservation = async function (
         return false;
     }
 };
+
+
+export const updateReservationArrived = async function (
+    oid: any,
+) {
+    // console.log(oid, covers, date, time, table_id, name, phone_number);
+    const state = 2
+    try {
+        const connection = await updatePool.getConnection(async (conn: any) => conn);
+        console.log("connection done");
+        try {
+            const query =
+                "update reservation set state=? where oid = ?;";
+            const params = [state, oid];
+            const [row] = await connection.query(query, params);
+            // console.log(row);
+            connection.release();
+            console.log("query done");
+            return row;
+        } catch (err) {
+            console.error("updateReservation query error");
+            connection.release();
+            return false;
+        }
+    } catch (err) {
+        console.error("DB connection error");
+        return false;
+    }
+};

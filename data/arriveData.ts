@@ -1,11 +1,30 @@
 const { arrivePool } = require("../db/database");
 
-//export async function findArriveTime(id: any) {
+// export async function findArriveTime(id: any) {
 //    const { oid } = id;
 //    return db.execute("SELECT * from reservation where oid=?", [oid]).then((result: any) => {
 //        return result[0][0];
 //    });
-//}
+// }
+
+export const findArriveTimeByOid = async function(oid: any) {
+    try {
+        const connection = await arrivePool.getConnection(async (conn: any) => conn);
+        try{
+            const query = "SELECT * from arrivaltime where oid=?";
+            const [row] = await connection.query(query, [oid]);
+            connection.release();
+            return row;
+        }catch (err) {
+            console.error("error");
+            connection.release();
+            return false;
+        }
+    }catch (err) {
+            console.error(" DB error");
+            return false;
+        }
+}
 
 exports.findArriveTime = async function (id: any, date: any, time: any) {
     try {
