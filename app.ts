@@ -56,11 +56,11 @@ app.post("/modifyReservation/:oid", modifyReservation);
 app.get("/arrivetime/:oid", getArriveTime);
 app.post("/arrivetime", arriveTime);
 // app.put("/login", insertStat);
-// app.get("/stat", showStat);
-// app.get("/stat/abs", showNoShowStat);
-// app.get("/stat/day", showDayOfWeekStat);
-// app.get("/stat/num", showNumOfCustStat);
-// app.get("/stat/all", showAllStat);
+app.get("/stat", showStat);
+app.get("/stat/abs", showNoShowStat);
+app.get("/stat/day", showDayOfWeekStat);
+app.get("/stat/num", showNumOfCustStat);
+app.get("/stat/all", showAllStat);
 
 app.listen(process.env.PORT || 4000, () => {
     console.log("4000번 포트에서 대기중");

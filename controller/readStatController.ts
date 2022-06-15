@@ -220,17 +220,17 @@ export async function showNumOfCustStat(req: Request, res: Response) {
 }
 export async function showAllStat(req: Request, res: Response) {
     const allStatsRow = await allStats();
-    const [a] = await sListReservation();
-    const autoDeleteReservationRow = await autoDeleteReservation(a);
-    if (autoDeleteReservationRow) {
-        console.log("자동 예약 삭제 성공");
-    } else {
-        return res.send({
-            isSuccess: false,
-            code: 400,
-            message: "시간 초과 자동 예약 삭제 실패",
-        });
-    }
+    // const [a] = await sListReservation();
+    // const autoDeleteReservationRow = await autoDeleteReservation(a);
+    // if (autoDeleteReservationRow) {
+    //     console.log("자동 예약 삭제 성공");
+    // } else {
+    //     return res.send({
+    //         isSuccess: false,
+    //         code: 400,
+    //         message: "시간 초과 자동 예약 삭제 실패",
+    //     });
+    // }
 
     if (allStatsRow) {
         return res.send({
