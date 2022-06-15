@@ -2,6 +2,8 @@ const { deletePool } = require("../db/database.ts");
 // import {pool} from "../db/database";
 // console.log(pool);
 
+
+//예약테이블에 있는 것과 도착 테이블에 있는 것중 같은 oid 제거
 exports.deleteReservation = async function (oid: any) {
     const connection = await deletePool.getConnection(async (conn: any) => conn);
     // console.log(connection);

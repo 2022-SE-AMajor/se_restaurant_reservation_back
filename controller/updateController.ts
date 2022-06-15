@@ -108,37 +108,37 @@ export async function modifyReservation(req: Request, res: Response) {
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
 
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
-    const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
+    // const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    // const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
-    if (autoDeleteReservationRow) {
-        console.log("자동 예약 삭제 성공");
-    } else {
-        return res.send({
-            isSuccess: false,
-            code: 400,
-            message: "시간 초과 자동 예약 삭제 실패",
-        });
-    }
+    // if (autoDeleteReservationRow) {
+    //     console.log("자동 예약 삭제 성공");
+    // } else {
+    //     return res.send({
+    //         isSuccess: false,
+    //         code: 400,
+    //         message: "시간 초과 자동 예약 삭제 실패",
+    //     });
+    // }
 
-    const lastReservationRow = await selectCovAndTimeOfReservation(oid);
-    const lastYear = new Date(lastReservationRow[0][`date`]).getFullYear(),
-        lastMonth = new Date(lastReservationRow[0][`date`]).getMonth() + 1;
-    let lastYM = `0`;
-    if (lastMonth < 10) lastYM = String(lastYear) + lastYM + String(lastMonth);
-    else lastYM = String(lastYear) + String(lastMonth);
-    await reverseNumOfPeople(lastYM, lastReservationRow[0][`covers`]);
-    await reverseWeekday(lastYM, new Date(lastReservationRow[0][`date`]).getDay());
-    await reverseTotal(lastYM);
+    // const lastReservationRow = await selectCovAndTimeOfReservation(oid);
+    // const lastYear = new Date(lastReservationRow[0][`date`]).getFullYear(),
+    //     lastMonth = new Date(lastReservationRow[0][`date`]).getMonth() + 1;
+    // let lastYM = `0`;
+    // if (lastMonth < 10) lastYM = String(lastYear) + lastYM + String(lastMonth);
+    // else lastYM = String(lastYear) + String(lastMonth);
+    // await reverseNumOfPeople(lastYM, lastReservationRow[0][`covers`]);
+    // await reverseWeekday(lastYM, new Date(lastReservationRow[0][`date`]).getDay());
+    // await reverseTotal(lastYM);
     const updateReservationRow = await updateReservation(oid, covers, date, time, table_id, name, phone_number);
-    const thisYear = new Date(`${date}`).getFullYear(),
-        thisMonth = new Date(`${date}`).getMonth() + 1;
-    let thisYM = `0`;
-    if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
-    else thisYM = String(thisYear) + String(thisMonth);
-    await updateNumOfPeople(thisYM, covers);
-    await updateWeekday(thisYM, new Date(`${date}`).getDay());
-    await updateTotal(thisYM);
+    // const thisYear = new Date(`${date}`).getFullYear(),
+    //     thisMonth = new Date(`${date}`).getMonth() + 1;
+    // let thisYM = `0`;
+    // if (thisMonth < 10) thisYM = String(thisYear) + thisYM + String(thisMonth);
+    // else thisYM = String(thisYear) + String(thisMonth);
+    // await updateNumOfPeople(thisYM, covers);
+    // await updateWeekday(thisYM, new Date(`${date}`).getDay());
+    // await updateTotal(thisYM);
     if (updateReservationRow) {
         return res.send({
             isSuccess: true,

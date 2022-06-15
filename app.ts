@@ -7,7 +7,7 @@ import { isValidDateTimeWhenCreating, createReservation } from "./controller/ins
 import { readReservation } from "./controller/readController";
 import { viewAllReservaion, isValidDateTimeWhenUpdating, modifyReservation } from "./controller/updateController";
 import { ajaxOutPutTableList, createReservationOnSite } from "./controller/onSiteController";
-import { arriveTime } from "./controller/arriveController";
+import { arriveTime, getArriveTime } from "./controller/arriveController";
 import {
     showStat,
     showNoShowStat,
@@ -19,6 +19,7 @@ import { insertStat } from "./controller/createStatController";
 import { autodDeleteReservation } from "./controller/autoDeleteController";
 import { dDeleteReservation } from "./controller/deleteController";
 import { listReservation } from "./controller/listController";
+import { db } from "./db/database";
 
 const app = express();
 
@@ -28,28 +29,33 @@ app.use(cors());
 app.use(morgan("dev"));
 
 app.post("/login", login);
-app.post("/reserve", createReservation); //중복a
+
+db.getConnection().then(()=>{
+    console.log("된다.")
+})
+
+// app.post("/reserve", createReservation); //중복a
 app.post("/readReservation", readReservation); //중복b
-app.delete("/autoDelete", autodDeleteReservation);
-app.delete("/delete", dDeleteReservation);
-app.get("/list", listReservation);
+// app.delete("/autoDelete", autodDeleteReservation);
+app.post("/delete", dDeleteReservation);
+// app.get("/list", listReservation);
 
-app.get("/login", login);
+// app.get("/login", login);
 
-app.get("/reserve", isValidDateTimeWhenCreating);
+// app.get("/reserve", isValidDateTimeWhenCreating);
 app.post("/reserve", createReservation); //중복a
 
-app.get("/readReservation", readReservation); //중복b
+// app.get("/readReservation", readReservation); //중복b
 
-app.get("/modifyReservation", viewAllReservaion);
-app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
+// app.get("/modifyReservation", viewAllReservaion);
+// app.get("/modifyReservation/:oid", isValidDateTimeWhenUpdating);
 app.post("/modifyReservation/:oid", modifyReservation);
 
-app.get("/reserveOnSite", ajaxOutPutTableList);
-app.post("/reserveOnSite", createReservationOnSite);
-
+// app.get("/reserveOnSite", ajaxOutPutTableList);
+// app.post("/reserveOnSite", createReservationOnSite);
+app.get("/arrivetime/:oid", getArriveTime);
 app.post("/arrivetime", arriveTime);
-app.put("/login", insertStat);
+// app.put("/login", insertStat);
 app.get("/stat", showStat);
 app.get("/stat/abs", showNoShowStat);
 app.get("/stat/day", showDayOfWeekStat);
