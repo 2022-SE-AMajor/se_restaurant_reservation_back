@@ -1,7 +1,7 @@
 const { updateReservation } = require("../data/updateData");
 const { selectAllReservation, selectTableIdList, selectCovAndTimeOfReservation } = require("../data/readData");
-const { sListReservation } = require("../data/listData"); // import sListReservation **자동 삭제 참고할 부분
-const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation **자동 삭제 참고할 부분
+//const { sListReservation } = require("../data/listData"); // import sListReservation **자동 삭제 참고할 부분
+//const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation **자동 삭제 참고할 부분
 const {
     updateTotal,
     reverseTotal,
@@ -14,7 +14,7 @@ const {
 import { Request, Response } from "express";
 
 export async function viewAllReservaion(req: Request, res: Response) {
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    /*const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
     const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
     if (autoDeleteReservationRow) {
@@ -25,7 +25,7 @@ export async function viewAllReservaion(req: Request, res: Response) {
             code: 400,
             message: "시간 초과 자동 예약 삭제 실패",
         });
-    }
+    }*/
     const selectAllReservationRow = await selectAllReservation();
     if (selectAllReservationRow) {
         return res.send({
@@ -56,7 +56,7 @@ export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
             message: "에러: 지난 날짜입니다.",
         });
     }
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    /*const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
     const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
     if (autoDeleteReservationRow) {
@@ -67,7 +67,7 @@ export async function isValidDateTimeWhenUpdating(req: Request, res: Response) {
             code: 400,
             message: "시간 초과 자동 예약 삭제 실패",
         });
-    }
+    }*/
     const selectTableIdListRow = await selectTableIdList(selectedDate, time);
 
     let TableList: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
@@ -108,7 +108,7 @@ export async function modifyReservation(req: Request, res: Response) {
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
 
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    /*const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
     const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
     if (autoDeleteReservationRow) {
@@ -119,7 +119,7 @@ export async function modifyReservation(req: Request, res: Response) {
             code: 400,
             message: "시간 초과 자동 예약 삭제 실패",
         });
-    }
+    }*/
 
     const lastReservationRow = await selectCovAndTimeOfReservation(oid);
     const lastYear = new Date(lastReservationRow[0][`date`]).getFullYear(),

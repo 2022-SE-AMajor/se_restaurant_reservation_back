@@ -4,14 +4,14 @@ const arriveData = require("../data/arriveData");
 const { listRecord } = require("../data/listData");
 const { selectCovAndTimeOfReservation } = require("../data/readData");
 const { reverseNoShow } = require("../data/updateStat");
-const { sListReservation } = require("../data/listData"); // import sListReservation
-const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation
+//const { sListReservation } = require("../data/listData"); // import sListReservation
+//const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation
 
 export async function arriveTime(req: Request, res: Response) {
     console.log("table_id", req.body);
     const { table_id, date, time } = req.body;
 
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    //const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
 
     console.log(table_id);
 
@@ -24,7 +24,7 @@ export async function arriveTime(req: Request, res: Response) {
         const oid = found[0][`oid`];
         console.log(oid);
 
-        const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
+        /*const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
         if (autoDeleteReservationRow) {
             console.log("자동 예약 삭제 성공");
@@ -34,7 +34,7 @@ export async function arriveTime(req: Request, res: Response) {
                 code: 400,
                 message: "시간 초과 자동 예약 삭제 실패",
             });
-        }
+        }*/
 
         const arriveFound = await arriveData.insertArrival(oid);
         const arriveRecord = await listRecord(oid);

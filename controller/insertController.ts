@@ -1,7 +1,7 @@
 const { insertReservation } = require("../data/insertData");
 const { selectTableIdList } = require("../data/readData");
-const { sListReservation } = require("../data/listData"); // import sListReservation
-const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation
+//const { sListReservation } = require("../data/listData"); // import sListReservation
+//const { autoDeleteReservation } = require("../data/autoDeleteData"); // import autoDeleteReservation
 const { updateTotal, updateNumOfPeople, updateWeekday, updateNoShow } = require("../data/updateStat");
 import { Request, Response } from "express";
 
@@ -20,7 +20,7 @@ export async function isValidDateTimeWhenCreating(req: Request, res: Response) {
             message: "에러: 지난 날짜입니다.",
         });
     }
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    /*const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
     const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
     if (autoDeleteReservationRow) {
@@ -31,7 +31,7 @@ export async function isValidDateTimeWhenCreating(req: Request, res: Response) {
             code: 400,
             message: "시간 초과 자동 예약 삭제 실패",
         });
-    }
+    }*/
 
     const selectTableIdListRow = await selectTableIdList(selectedDate, time);
 
@@ -74,7 +74,7 @@ export async function createReservation(req: Request, res: Response) {
     // console.log(date, time);
     // console.log(covers, table_id, name, phone_number);
 
-    const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
+    /*const [a] = await sListReservation(); // select 현재 전체 예약 현황 **자동 삭제 참고할 부분
     const autoDeleteReservationRow = await autoDeleteReservation(a); // 갱신 **자동 삭제 참고할 부분
 
     if (autoDeleteReservationRow) {
@@ -85,8 +85,7 @@ export async function createReservation(req: Request, res: Response) {
             code: 400,
             message: "시간 초과 자동 예약 삭제 실패",
         });
-    }
-
+    }*/
     const thisYear = new Date(`${date}`).getFullYear(),
         thisMonth = new Date(`${date}`).getMonth() + 1;
     let thisYM = `0`;
