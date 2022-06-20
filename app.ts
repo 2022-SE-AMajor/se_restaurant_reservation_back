@@ -30,7 +30,7 @@ app.use(morgan("dev"));
 app.post("/login", login);
 app.post("/reserve", createReservation); //중복a
 app.post("/readReservation", readReservation); //중복b
-app.delete("/autoDelete", autodDeleteReservation);
+//app.delete("/autoDelete", autodDeleteReservation); //이제 없어도 됨
 app.delete("/delete", dDeleteReservation);
 app.get("/list", listReservation);
 
