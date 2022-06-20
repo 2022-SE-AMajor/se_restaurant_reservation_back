@@ -30,7 +30,7 @@ app.use(morgan("dev"));
 app.post("/login", login);
 app.post("/reserve", createReservation); //중복a
 app.post("/readReservation", readReservation); //중복b
-//app.delete("/autoDelete", autodDeleteReservation); //이제 없어도 됨
+//app.delete("/autoDelete", autodDeleteReservation); //시간이 지난 시각의 버튼을 누르면 자동 삭제
 app.delete("/delete", dDeleteReservation);
 app.get("/list", listReservation);
 

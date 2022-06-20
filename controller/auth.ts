@@ -1,7 +1,6 @@
 import * as userRepository from "../data/auth";
 
 import { UserProps } from "../type";
-
 import { Request, Response } from "express";
 
 export async function login(req: Request, res: Response) {
